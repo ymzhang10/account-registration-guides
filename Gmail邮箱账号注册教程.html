@@ -1,0 +1,891 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gmail 邮箱账号注册教程</title>
+  <meta name="author" content="ymzhang">
+  <style>
+    :root {
+      --paper: #f8f5ef;
+      --paper-2: #fffdf8;
+      --ink: #15171c;
+      --muted: #4b5563;
+      --soft: #efe8da;
+      --line: #d9d1c2;
+      --blue: #2563eb;
+      --teal: #0f766e;
+      --amber: #b45309;
+      --red: #dc2626;
+      --green: #15803d;
+      --panel: #ffffff;
+      --shadow: 0 18px 48px rgba(21, 23, 28, 0.08);
+      --radius: 8px;
+      font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", "Helvetica Neue", Arial, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--paper);
+      overflow-x: hidden;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        linear-gradient(90deg, rgba(37, 99, 235, 0.06) 1px, transparent 1px),
+        linear-gradient(180deg, rgba(37, 99, 235, 0.04) 1px, transparent 1px),
+        var(--paper);
+      background-size: 80px 80px;
+      line-height: 1.72;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: var(--blue);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(37, 99, 235, 0.25);
+    }
+
+    a:hover { border-bottom-color: var(--blue); }
+
+    code {
+      background: var(--soft);
+      border: 1px solid var(--line);
+      padding: 1px 6px;
+      border-radius: 4px;
+      font-family: "SFMono-Regular", Consolas, monospace;
+      font-size: 0.92em;
+    }
+
+    .wrap {
+      width: min(1120px, calc(100vw - 40px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(14px);
+      background: rgba(248, 245, 239, 0.9);
+      border-bottom: 1px solid rgba(217, 209, 194, 0.75);
+    }
+
+    .nav {
+      min-height: 62px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .nav strong {
+      color: var(--ink);
+      font-size: 16px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      border: 0;
+    }
+
+    .hero { padding: 76px 0 44px; }
+
+    .kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--muted);
+      font-weight: 700;
+      letter-spacing: 0;
+      margin-bottom: 22px;
+    }
+
+    .kicker::before {
+      content: "";
+      width: 30px;
+      height: 4px;
+      background: var(--blue);
+      display: inline-block;
+    }
+
+    h1, h2, h3 {
+      letter-spacing: 0;
+      line-height: 1.18;
+      margin: 0;
+    }
+
+    h1 {
+      font-size: clamp(40px, 7vw, 76px);
+      max-width: 1000px;
+      margin-bottom: 22px;
+      overflow-wrap: anywhere;
+    }
+
+    h2 {
+      font-size: clamp(28px, 4.8vw, 48px);
+      margin-bottom: 14px;
+    }
+
+    h3 {
+      font-size: 22px;
+      margin-bottom: 10px;
+    }
+
+    p { margin: 0; }
+
+    .lead {
+      max-width: 860px;
+      font-size: clamp(18px, 2.6vw, 24px);
+      color: var(--muted);
+      margin-bottom: 32px;
+      overflow-wrap: anywhere;
+    }
+
+    .mobile-title { display: none; }
+
+    .meta-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--line);
+      border: 1px solid var(--line);
+      margin-top: 32px;
+    }
+
+    .meta-strip div {
+      background: var(--paper-2);
+      padding: 18px 20px;
+      min-height: 96px;
+    }
+
+    .meta-strip span {
+      display: block;
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 4px;
+    }
+
+    .meta-strip strong { font-size: 18px; }
+
+    .section { padding: 42px 0; }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: end;
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+
+    .section-head p {
+      color: var(--muted);
+      max-width: 780px;
+      font-size: 18px;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      min-height: 30px;
+      padding: 4px 12px;
+      border: 1px solid var(--line);
+      background: var(--paper-2);
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .plate {
+      background: rgba(255, 253, 248, 0.96);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      padding: clamp(22px, 4vw, 42px);
+      border-radius: var(--radius);
+    }
+
+    .poster {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: clamp(20px, 3vw, 34px);
+      min-width: 0;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .callout {
+      border-left: 6px solid var(--blue);
+      background: #eef4ff;
+      padding: 18px 20px;
+      margin-top: 20px;
+      color: #1f2937;
+      font-weight: 700;
+      overflow-wrap: anywhere;
+    }
+
+    .danger {
+      border-left-color: var(--red);
+      background: #fff1f1;
+    }
+
+    .ok {
+      border-left-color: var(--teal);
+      background: #edfdfa;
+    }
+
+    .amber {
+      border-left-color: var(--amber);
+      background: #fff7e8;
+    }
+
+    .card,
+    .qa-card,
+    .step-card {
+      background: var(--paper-2);
+      border: 1px solid var(--line);
+      padding: 20px;
+      border-radius: var(--radius);
+      min-height: 150px;
+      min-width: 0;
+      overflow-wrap: anywhere;
+    }
+
+    .card .dot,
+    .qa-card .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      display: inline-block;
+      margin-right: 8px;
+      background: var(--blue);
+      flex: none;
+    }
+
+    .card:nth-child(2) .dot,
+    .card:nth-child(6) .dot,
+    .qa-card:nth-child(2) .dot { background: var(--teal); }
+
+    .card:nth-child(3) .dot,
+    .card:nth-child(5) .dot,
+    .qa-card:nth-child(3) .dot { background: var(--amber); }
+
+    .card h3,
+    .qa-card h3 {
+      display: flex;
+      align-items: center;
+      margin-bottom: 12px;
+      overflow-wrap: anywhere;
+    }
+
+    .card p,
+    .qa-card p,
+    .step-card p {
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .rule-list {
+      counter-reset: rule;
+      display: grid;
+      gap: 0;
+      border: 1px solid var(--line);
+      background: var(--line);
+    }
+
+    .rule-row {
+      counter-increment: rule;
+      display: grid;
+      grid-template-columns: 70px 260px 1fr;
+      gap: 20px;
+      align-items: center;
+      background: var(--paper-2);
+      padding: 18px 22px;
+      min-width: 0;
+    }
+
+    .rule-row + .rule-row { border-top: 1px solid var(--line); }
+
+    .rule-row::before {
+      content: counter(rule, decimal-leading-zero);
+      color: var(--blue);
+      font-weight: 800;
+      font-family: "Aptos", Arial, sans-serif;
+    }
+
+    .rule-row:nth-child(2)::before,
+    .rule-row:nth-child(5)::before { color: var(--red); }
+
+    .rule-row strong {
+      font-size: 20px;
+      overflow-wrap: anywhere;
+    }
+
+    .rule-row span {
+      color: var(--muted);
+      overflow-wrap: anywhere;
+    }
+
+    .timeline {
+      display: grid;
+      grid-template-columns: repeat(var(--steps, 5), 1fr);
+      gap: 0;
+      margin: 28px 0;
+      position: relative;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 7%;
+      right: 7%;
+      top: 26px;
+      height: 2px;
+      background: var(--line);
+    }
+
+    .t-step {
+      position: relative;
+      text-align: center;
+      padding: 0 10px;
+      min-width: 0;
+    }
+
+    .num {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--blue);
+      color: #fff;
+      font-weight: 800;
+      font-family: "Aptos", Arial, sans-serif;
+      position: relative;
+      z-index: 2;
+      margin-bottom: 16px;
+      flex: none;
+    }
+
+    .t-step:nth-child(4) .num,
+    .step-card:nth-child(4) .num { background: var(--amber); }
+
+    .t-step:nth-child(5) .num,
+    .step-card:nth-child(5) .num { background: var(--teal); }
+
+    .t-step strong {
+      display: block;
+      font-size: 18px;
+      margin-bottom: 8px;
+      overflow-wrap: anywhere;
+    }
+
+    .t-step span {
+      display: block;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.45;
+      overflow-wrap: anywhere;
+    }
+
+    .flow {
+      display: grid;
+      grid-template-columns: repeat(var(--flow-cols, 5), 1fr);
+      gap: 16px;
+      align-items: stretch;
+    }
+
+    .flow .step-card { position: relative; }
+
+    .flow .step-card:not(:last-child)::after {
+      content: "";
+      position: absolute;
+      right: -16px;
+      top: 50%;
+      width: 16px;
+      height: 2px;
+      background: var(--line);
+    }
+
+    .step-card .num {
+      width: 34px;
+      height: 34px;
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+
+    .copy-block {
+      display: grid;
+      gap: 18px;
+      font-size: 17px;
+      min-width: 0;
+      overflow-wrap: anywhere;
+    }
+
+    .copy-block h3 { margin-top: 10px; }
+
+    .copy-block ul,
+    .copy-block ol {
+      margin: 12px 0 0;
+      padding-left: 22px;
+    }
+
+    .copy-block li { margin: 6px 0; }
+
+    .split-note {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      margin-top: 24px;
+    }
+
+    .route-card {
+      border: 1px solid var(--line);
+      background: var(--paper-2);
+      padding: 24px;
+      border-radius: var(--radius);
+      min-height: 220px;
+      min-width: 0;
+      overflow-wrap: anywhere;
+    }
+
+    .route-card ol,
+    .route-card ul {
+      margin: 14px 0 0;
+      padding-left: 22px;
+    }
+
+    .route-card li { margin: 6px 0; }
+
+    .label-red {
+      color: var(--red);
+      font-weight: 800;
+      margin-top: 12px;
+      display: inline-block;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--line);
+      background: var(--paper-2);
+      border-radius: var(--radius);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 720px;
+    }
+
+    th, td {
+      text-align: left;
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+    }
+
+    th {
+      color: var(--muted);
+      font-size: 14px;
+      background: rgba(239, 232, 218, 0.45);
+    }
+
+    td strong { color: var(--blue); }
+    tr:last-child td { border-bottom: 0; }
+
+    .checklist {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .check {
+      border: 1px solid var(--line);
+      background: var(--paper-2);
+      padding: 14px 16px;
+      border-radius: var(--radius);
+      display: grid;
+      grid-template-columns: 22px 1fr;
+      gap: 10px;
+      align-items: start;
+      overflow-wrap: anywhere;
+    }
+
+    .check::before {
+      content: "";
+      width: 16px;
+      height: 16px;
+      border: 2px solid var(--blue);
+      margin-top: 4px;
+      display: inline-block;
+    }
+
+    .refs {
+      display: grid;
+      gap: 8px;
+      margin-top: 18px;
+    }
+
+    .refs a {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 20px;
+      padding: 14px 16px;
+      background: var(--paper-2);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      color: var(--ink);
+      overflow-wrap: anywhere;
+    }
+
+    .refs span {
+      color: var(--muted);
+      font-family: "Aptos", Arial, sans-serif;
+      font-size: 14px;
+    }
+
+    .footer {
+      color: var(--muted);
+      padding: 34px 0 56px;
+      font-size: 14px;
+    }
+
+    @media (max-width: 900px) {
+      .wrap { width: min(100vw - 32px, 720px); }
+      .nav {
+        min-height: auto;
+        padding: 14px 0;
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .nav-links {
+        width: 100%;
+        justify-content: flex-start;
+        gap: 10px 14px;
+      }
+      .hero { padding: 48px 0 28px; }
+      h1 { font-size: clamp(34px, 10vw, 42px); }
+      h2 { font-size: clamp(27px, 8vw, 36px); }
+      h3 { font-size: 20px; }
+      .desktop-title { display: none; }
+      .mobile-title { display: inline; }
+      .meta-strip,
+      .grid-2,
+      .grid-3,
+      .grid-4,
+      .split-note {
+        grid-template-columns: 1fr;
+      }
+      .meta-strip div { min-height: auto; }
+      .section { padding: 26px 0; }
+      .section-head {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        margin-bottom: 18px;
+      }
+      .plate,
+      .poster { padding: 22px; }
+      .rule-row {
+        grid-template-columns: 44px 1fr;
+        gap: 10px 14px;
+        padding: 16px;
+      }
+      .rule-row span { grid-column: 2; }
+      .timeline,
+      .flow {
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+      .timeline::before,
+      .flow .step-card:not(:last-child)::after { display: none; }
+      .t-step {
+        display: grid;
+        grid-template-columns: 52px 1fr;
+        text-align: left;
+        gap: 14px;
+        padding: 14px 0;
+        border-bottom: 1px solid var(--line);
+      }
+      .t-step:last-child { border-bottom: 0; }
+      .num { margin-bottom: 0; }
+      .checklist { grid-template-columns: 1fr; }
+      table { min-width: 640px; }
+      th, td { padding: 13px 14px; }
+      .refs a { grid-template-columns: 1fr; gap: 4px; }
+      .refs span { font-size: 12px; }
+      .card, .qa-card, .step-card { min-height: auto; }
+    }
+
+    @media print {
+      html { background: #fff; }
+      body {
+        background: #fff;
+        color: #000;
+      }
+      .topbar { position: static; }
+      .nav-links { display: none; }
+      .section { break-inside: avoid; }
+      .plate { box-shadow: none; }
+    }
+</style>
+</head>
+<body>
+  <header class="topbar">
+    <nav class="wrap nav" aria-label="页面导航">
+      <strong>Gmail 注册</strong>
+      <div class="nav-links">
+        <a href="#boundary">边界</a><a href="#prepare">准备</a><a href="#username">用户名</a><a href="#steps">流程</a><a href="#fix">排错</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <div class="kicker">邮箱注册图文版</div>
+        <h1><span class="desktop-title">Gmail 邮箱账号注册教程</span><span class="mobile-title">Gmail<br>邮箱账号注册教程</span></h1>
+        <p class="lead">用长期可控的设备、手机号和恢复方式注册 Gmail。不要买号，不接码，不批量注册。</p>
+        <div class="meta-strip">
+        <div><span>核心原则</span><strong>长期可控</strong></div>
+        <div><span>推荐入口</span><strong>accounts.google.com/signup</strong></div>
+        <div><span>验收标准</span><strong>能收发邮件 + 恢复方式生效</strong></div>
+      </div>
+      </div>
+    </section>
+
+    <section id="boundary" class="section">
+    <div class="wrap">
+      <div class="plate">
+        <div class="section-head">
+          <div>
+            <h2>先明确边界</h2>
+            <p>Gmail 注册成不等于账号长期稳定，网络、手机号和恢复方式都会影响后续使用。</p>
+          </div>
+          <span class="tag">Reality Check</span>
+        </div>
+        <div class="grid-3">
+        <article class="card">
+          <h3><span class="dot"></span>访问环境</h3>
+          <p>中国大陆普通网络通常无法稳定访问 Google 和 Gmail，需要可稳定访问 Google 服务的网络环境。</p>
+        </article>
+        <article class="card">
+          <h3><span class="dot"></span>手机号验证</h3>
+          <p>+86 手机号可以尝试，但不保证一定可用；不要依赖一次性接码。</p>
+        </article>
+        <article class="card">
+          <h3><span class="dot"></span>账号稳定</h3>
+          <p>新号注册后仍可能触发再次验证。恢复电话、恢复邮箱和常用设备很重要。</p>
+        </article>
+      </div>
+      </div>
+    </div>
+  </section>
+
+<section id="prepare" class="section">
+    <div class="wrap">
+      <div class="plate">
+        <div class="section-head">
+          <div>
+            <h2>注册前准备清单</h2>
+            <p>把环境、手机号、恢复邮箱和用户名先准备好，注册时不要频繁重试。</p>
+          </div>
+          <span class="tag">Before Sign Up</span>
+        </div>
+        <div class="grid-3">
+        <article class="card">
+          <h3><span class="dot"></span>网络环境</h3>
+          <p>使用干净、稳定、延迟较低的网络，不要在注册过程中频繁切换地区。</p>
+        </article>
+        <article class="card">
+          <h3><span class="dot"></span>设备</h3>
+          <p>优先使用自己常用的电脑或手机，后续也用同一设备完成首次登录和安全设置。</p>
+        </article>
+        <article class="card">
+          <h3><span class="dot"></span>浏览器</h3>
+          <p>建议使用 Chrome 或 Safari，避免插件过多的浏览器环境。</p>
+        </article>
+        <article class="card">
+          <h3><span class="dot"></span>手机号</h3>
+          <p>准备长期可控手机号，用于短信验证和恢复账号。</p>
+        </article>
+        <article class="card">
+          <h3><span class="dot"></span>恢复邮箱</h3>
+          <p>准备一个已经稳定可用的邮箱，用于账号找回和安全通知。</p>
+        </article>
+        <article class="card">
+          <h3><span class="dot"></span>强密码</h3>
+          <p>使用密码管理器生成并保存强密码，不要和其他网站重复。</p>
+        </article>
+      </div>
+      </div>
+    </div>
+  </section>
+
+<section id="username" class="section">
+    <div class="wrap">
+      <div class="plate">
+        <div class="section-head">
+          <div>
+            <h2>用户名规则</h2>
+            <p>Gmail 用户名规则比较严格，点号不会区分不同账号。</p>
+          </div>
+          <span class="tag">Username Rules</span>
+        </div>
+        <div class="table-wrap"><table>
+        <thead><tr><th>规则</th><th>说明</th><th>示例</th></tr></thead>
+        <tbody><tr><td><strong>长度</strong></td><td>通常为 6 到 30 个字符。</td><td><code>zhangsan2026</code></td></tr><tr><td><strong>可用字符</strong></td><td>英文字母、数字和点号。</td><td><code>zhang.san</code></td></tr><tr><td><strong>不可用字符</strong></td><td>不要用下划线、连字符、加号或连续点号。</td><td><code>zhang_san</code> 不推荐</td></tr><tr><td><strong>点号规则</strong></td><td>Gmail 地址中的点号通常不区分账号。</td><td><code>zhangsan</code> 和 <code>zhang.san</code> 指向同一邮箱</td></tr><tr><td><strong>保留名称</strong></td><td>部分系统保留词不可注册。</td><td><code>postmaster</code></td></tr></tbody>
+      </table></div>
+      </div>
+    </div>
+  </section>
+
+<section id="steps" class="section">
+    <div class="wrap">
+      <div class="plate">
+        <div class="section-head">
+          <div>
+            <h2>推荐注册流程</h2>
+            <p>按顺序完成注册、验证、进入 Gmail 和安全设置。</p>
+          </div>
+          <span class="tag">Flow</span>
+        </div>
+        <div class="timeline" style="--steps:6">
+        <div class="t-step">
+          <div class="num">01</div>
+          <div><strong>准备环境</strong><span>确认网络、设备、手机号、恢复邮箱和用户名。</span></div>
+        </div>
+        <div class="t-step">
+          <div class="num">02</div>
+          <div><strong>打开入口</strong><span>访问 <a href="https://accounts.google.com/signup"><strong>accounts.google.com/signup</strong><span>accounts.google.com/signup</span></a></span></div>
+        </div>
+        <div class="t-step">
+          <div class="num">03</div>
+          <div><strong>填写信息</strong><span>填写姓名、生日、性别、用户名和强密码。</span></div>
+        </div>
+        <div class="t-step">
+          <div class="num">04</div>
+          <div><strong>短信验证</strong><span>按提示完成手机号验证；失败时不要短时间大量重试。</span></div>
+        </div>
+        <div class="t-step">
+          <div class="num">05</div>
+          <div><strong>进入 Gmail</strong><span>打开 Gmail，确认收件箱可以正常加载。</span></div>
+        </div>
+        <div class="t-step">
+          <div class="num">06</div>
+          <div><strong>安全设置</strong><span>添加恢复电话、恢复邮箱和两步验证。</span></div>
+        </div>
+      </div>
+      </div>
+    </div>
+  </section>
+
+<section id="security" class="section">
+    <div class="wrap">
+      <div class="plate">
+        <div class="section-head">
+          <div>
+            <h2>注册后安全设置与验收</h2>
+            <p>验证 Gmail 能收发邮件，同时确认账号可以恢复。</p>
+          </div>
+          <span class="tag">Security</span>
+        </div>
+        <div class="grid-2">
+        <div class="poster">
+          <h3>安全设置</h3>
+          <div class="checklist">
+        <div class="check"><span>添加恢复手机号。</span></div>
+        <div class="check"><span>添加恢复邮箱。</span></div>
+        <div class="check"><span>开启两步验证。</span></div>
+        <div class="check"><span>添加 Passkey 或 Google Prompt。</span></div>
+        <div class="check"><span>保存备用验证码，但不要写进普通笔记。</span></div>
+        <div class="check"><span>检查最近安全活动是否正常。</span></div>
+      </div>
+        </div>
+        <div class="poster">
+          <h3>验收动作</h3>
+          <div class="checklist">
+        <div class="check"><span>从另一个邮箱给 Gmail 发测试邮件。</span></div>
+        <div class="check"><span>确认 Gmail 收件箱能收到邮件。</span></div>
+        <div class="check"><span>从 Gmail 回复测试邮件。</span></div>
+        <div class="check"><span>在另一个邮箱确认回复已收到。</span></div>
+        <div class="check"><span>用手机或另一台电脑登录一次。</span></div>
+        <div class="check"><span>在 Google Account 中确认恢复方式生效。</span></div>
+      </div>
+        </div>
+      </div>
+      </div>
+    </div>
+  </section>
+
+<section id="fix" class="section">
+    <div class="wrap">
+      <div class="plate">
+        <div class="section-head">
+          <div>
+            <h2>常见问题排查</h2>
+            <p>注册失败时优先检查网络、手机号和操作频率，不要用接码平台硬闯。</p>
+          </div>
+          <span class="tag">Troubleshooting</span>
+        </div>
+        <div class="table-wrap"><table>
+        <thead><tr><th>问题</th><th>可能原因</th><th>处理</th></tr></thead>
+        <tbody><tr><td><strong>打不开注册页</strong></td><td>网络无法稳定访问 Google 服务。</td><td>更换稳定网络环境后重试。</td></tr><tr><td><strong>收不到短信</strong></td><td>号码不支持、运营商拦截或重试过多。</td><td>换长期可控手机号，间隔一段时间再试。</td></tr><tr><td><strong>电话号码无法用于验证</strong></td><td>号码被多次使用、风险过高或地区限制。</td><td>换真实长期号码，不建议接码。</td></tr><tr><td><strong>用户名被占用</strong></td><td>常见用户名已被注册。</td><td>增加年份、缩写或品牌后缀，但保持可读。</td></tr><tr><td><strong>注册后再次验证</strong></td><td>新号风控或登录环境变化。</td><td>使用常用设备，完善恢复方式，减少地区切换。</td></tr><tr><td><strong>账号能登录但 Gmail 不能用</strong></td><td>Google 账号和 Gmail 邮箱服务启用状态不同。</td><td>进入 Gmail 页面按提示启用邮箱服务。</td></tr></tbody>
+      </table></div><div class="callout danger">不要购买成品 Gmail 账号，也不要用接码平台注册。后续找回、风控和二次验证会非常麻烦。</div>
+      </div>
+    </div>
+  </section>
+
+    <section id="refs" class="section">
+      <div class="wrap">
+        <div class="plate">
+          <div class="section-head">
+            <div>
+              <h2>官方参考</h2>
+              <p>教程以官方帮助文档和实际操作经验为基础；界面和政策可能变化，操作前建议再核对一次。</p>
+            </div>
+            <span class="tag">References</span>
+          </div>
+          <div class="refs"><a href="https://accounts.google.com/signup"><strong>Create your Google Account</strong><span>accounts.google.com/signup</span></a><a href="https://support.google.com/mail/answer/56256"><strong>Create a Gmail account</strong><span>support.google.com/mail/answer/56256</span></a><a href="https://support.google.com/accounts/answer/27442"><strong>Change your username</strong><span>support.google.com/accounts/answer/27442</span></a><a href="https://support.google.com/accounts/answer/7682439"><strong>Recover your Google Account</strong><span>support.google.com/accounts/answer/7682439</span></a><a href="https://support.google.com/accounts/answer/185839"><strong>2-Step Verification</strong><span>support.google.com/accounts/answer/185839</span></a></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="wrap footer">
+    <p>作者：ymzhang。由 Markdown 教程生成的单文件 HTML 版本。最后整理：2026-05-22。</p>
+  </footer>
+</body>
+</html>

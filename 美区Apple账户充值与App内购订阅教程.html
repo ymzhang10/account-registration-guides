@@ -1,0 +1,976 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>美区 Apple 账户充值与 App 内购订阅教程</title>
+  <meta name="author" content="ymzhang">
+  <style>
+    :root {
+      --paper: #f8f5ef;
+      --paper-2: #fffdf8;
+      --ink: #15171c;
+      --muted: #4b5563;
+      --soft: #efe8da;
+      --line: #d9d1c2;
+      --blue: #2563eb;
+      --teal: #0f766e;
+      --amber: #b45309;
+      --red: #dc2626;
+      --green: #15803d;
+      --panel: #ffffff;
+      --shadow: 0 18px 48px rgba(21, 23, 28, 0.08);
+      --radius: 8px;
+      font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", "Helvetica Neue", Arial, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--paper);
+      overflow-x: hidden;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        linear-gradient(90deg, rgba(37, 99, 235, 0.06) 1px, transparent 1px),
+        linear-gradient(180deg, rgba(37, 99, 235, 0.04) 1px, transparent 1px),
+        var(--paper);
+      background-size: 80px 80px;
+      line-height: 1.72;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: var(--blue);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(37, 99, 235, 0.25);
+    }
+
+    a:hover { border-bottom-color: var(--blue); }
+
+    code {
+      background: var(--soft);
+      border: 1px solid var(--line);
+      padding: 1px 6px;
+      border-radius: 4px;
+      font-family: "SFMono-Regular", Consolas, monospace;
+      font-size: 0.92em;
+    }
+
+    .wrap {
+      width: min(1120px, calc(100vw - 40px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(14px);
+      background: rgba(248, 245, 239, 0.9);
+      border-bottom: 1px solid rgba(217, 209, 194, 0.75);
+    }
+
+    .nav {
+      min-height: 62px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .nav strong {
+      color: var(--ink);
+      font-size: 16px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      border: 0;
+    }
+
+    .hero { padding: 76px 0 44px; }
+
+    .kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--muted);
+      font-weight: 700;
+      letter-spacing: 0;
+      margin-bottom: 22px;
+    }
+
+    .kicker::before {
+      content: "";
+      width: 30px;
+      height: 4px;
+      background: var(--blue);
+      display: inline-block;
+    }
+
+    h1, h2, h3 {
+      letter-spacing: 0;
+      line-height: 1.18;
+      margin: 0;
+    }
+
+    h1 {
+      font-size: clamp(40px, 7vw, 76px);
+      max-width: 1000px;
+      margin-bottom: 22px;
+      overflow-wrap: anywhere;
+    }
+
+    h2 {
+      font-size: clamp(28px, 4.8vw, 48px);
+      margin-bottom: 14px;
+    }
+
+    h3 {
+      font-size: 22px;
+      margin-bottom: 10px;
+    }
+
+    p { margin: 0; }
+
+    .lead {
+      max-width: 860px;
+      font-size: clamp(18px, 2.6vw, 24px);
+      color: var(--muted);
+      margin-bottom: 32px;
+      overflow-wrap: anywhere;
+    }
+
+    .mobile-title { display: none; }
+
+    .meta-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--line);
+      border: 1px solid var(--line);
+      margin-top: 32px;
+    }
+
+    .meta-strip div {
+      background: var(--paper-2);
+      padding: 18px 20px;
+      min-height: 96px;
+    }
+
+    .meta-strip span {
+      display: block;
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 4px;
+    }
+
+    .meta-strip strong { font-size: 18px; }
+
+    .section { padding: 42px 0; }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: end;
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+
+    .section-head p {
+      color: var(--muted);
+      max-width: 780px;
+      font-size: 18px;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      min-height: 30px;
+      padding: 4px 12px;
+      border: 1px solid var(--line);
+      background: var(--paper-2);
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .plate {
+      background: rgba(255, 253, 248, 0.96);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      padding: clamp(22px, 4vw, 42px);
+      border-radius: var(--radius);
+    }
+
+    .poster {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: clamp(20px, 3vw, 34px);
+      min-width: 0;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .callout {
+      border-left: 6px solid var(--blue);
+      background: #eef4ff;
+      padding: 18px 20px;
+      margin-top: 20px;
+      color: #1f2937;
+      font-weight: 700;
+      overflow-wrap: anywhere;
+    }
+
+    .danger {
+      border-left-color: var(--red);
+      background: #fff1f1;
+    }
+
+    .ok {
+      border-left-color: var(--teal);
+      background: #edfdfa;
+    }
+
+    .amber {
+      border-left-color: var(--amber);
+      background: #fff7e8;
+    }
+
+    .card,
+    .qa-card,
+    .step-card {
+      background: var(--paper-2);
+      border: 1px solid var(--line);
+      padding: 20px;
+      border-radius: var(--radius);
+      min-height: 150px;
+      min-width: 0;
+      overflow-wrap: anywhere;
+    }
+
+    .card .dot,
+    .qa-card .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      display: inline-block;
+      margin-right: 8px;
+      background: var(--blue);
+      flex: none;
+    }
+
+    .card:nth-child(2) .dot,
+    .card:nth-child(6) .dot,
+    .qa-card:nth-child(2) .dot { background: var(--teal); }
+
+    .card:nth-child(3) .dot,
+    .card:nth-child(5) .dot,
+    .qa-card:nth-child(3) .dot { background: var(--amber); }
+
+    .card h3,
+    .qa-card h3 {
+      display: flex;
+      align-items: center;
+      margin-bottom: 12px;
+      overflow-wrap: anywhere;
+    }
+
+    .card p,
+    .qa-card p,
+    .step-card p {
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .rule-list {
+      counter-reset: rule;
+      display: grid;
+      gap: 0;
+      border: 1px solid var(--line);
+      background: var(--line);
+    }
+
+    .rule-row {
+      counter-increment: rule;
+      display: grid;
+      grid-template-columns: 70px 260px 1fr;
+      gap: 20px;
+      align-items: center;
+      background: var(--paper-2);
+      padding: 18px 22px;
+      min-width: 0;
+    }
+
+    .rule-row + .rule-row { border-top: 1px solid var(--line); }
+
+    .rule-row::before {
+      content: counter(rule, decimal-leading-zero);
+      color: var(--blue);
+      font-weight: 800;
+      font-family: "Aptos", Arial, sans-serif;
+    }
+
+    .rule-row:nth-child(2)::before,
+    .rule-row:nth-child(5)::before { color: var(--red); }
+
+    .rule-row strong {
+      font-size: 20px;
+      overflow-wrap: anywhere;
+    }
+
+    .rule-row span {
+      color: var(--muted);
+      overflow-wrap: anywhere;
+    }
+
+    .timeline {
+      display: grid;
+      grid-template-columns: repeat(var(--steps, 5), 1fr);
+      gap: 0;
+      margin: 28px 0;
+      position: relative;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 7%;
+      right: 7%;
+      top: 26px;
+      height: 2px;
+      background: var(--line);
+    }
+
+    .t-step {
+      position: relative;
+      text-align: center;
+      padding: 0 10px;
+      min-width: 0;
+    }
+
+    .num {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--blue);
+      color: #fff;
+      font-weight: 800;
+      font-family: "Aptos", Arial, sans-serif;
+      position: relative;
+      z-index: 2;
+      margin-bottom: 16px;
+      flex: none;
+    }
+
+    .t-step:nth-child(4) .num,
+    .step-card:nth-child(4) .num { background: var(--amber); }
+
+    .t-step:nth-child(5) .num,
+    .step-card:nth-child(5) .num { background: var(--teal); }
+
+    .t-step strong {
+      display: block;
+      font-size: 18px;
+      margin-bottom: 8px;
+      overflow-wrap: anywhere;
+    }
+
+    .t-step span {
+      display: block;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.45;
+      overflow-wrap: anywhere;
+    }
+
+    .flow {
+      display: grid;
+      grid-template-columns: repeat(var(--flow-cols, 5), 1fr);
+      gap: 16px;
+      align-items: stretch;
+    }
+
+    .flow .step-card { position: relative; }
+
+    .flow .step-card:not(:last-child)::after {
+      content: "";
+      position: absolute;
+      right: -16px;
+      top: 50%;
+      width: 16px;
+      height: 2px;
+      background: var(--line);
+    }
+
+    .step-card .num {
+      width: 34px;
+      height: 34px;
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+
+    .copy-block {
+      display: grid;
+      gap: 18px;
+      font-size: 17px;
+      min-width: 0;
+      overflow-wrap: anywhere;
+    }
+
+    .copy-block h3 { margin-top: 10px; }
+
+    .copy-block ul,
+    .copy-block ol {
+      margin: 12px 0 0;
+      padding-left: 22px;
+    }
+
+    .copy-block li { margin: 6px 0; }
+
+    .split-note {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      margin-top: 24px;
+    }
+
+    .route-card {
+      border: 1px solid var(--line);
+      background: var(--paper-2);
+      padding: 24px;
+      border-radius: var(--radius);
+      min-height: 220px;
+      min-width: 0;
+      overflow-wrap: anywhere;
+    }
+
+    .route-card ol,
+    .route-card ul {
+      margin: 14px 0 0;
+      padding-left: 22px;
+    }
+
+    .route-card li { margin: 6px 0; }
+
+    .label-red {
+      color: var(--red);
+      font-weight: 800;
+      margin-top: 12px;
+      display: inline-block;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--line);
+      background: var(--paper-2);
+      border-radius: var(--radius);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 720px;
+    }
+
+    th, td {
+      text-align: left;
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+    }
+
+    th {
+      color: var(--muted);
+      font-size: 14px;
+      background: rgba(239, 232, 218, 0.45);
+    }
+
+    td strong { color: var(--blue); }
+    tr:last-child td { border-bottom: 0; }
+
+    .checklist {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .check {
+      border: 1px solid var(--line);
+      background: var(--paper-2);
+      padding: 14px 16px;
+      border-radius: var(--radius);
+      display: grid;
+      grid-template-columns: 22px 1fr;
+      gap: 10px;
+      align-items: start;
+      overflow-wrap: anywhere;
+    }
+
+    .check::before {
+      content: "";
+      width: 16px;
+      height: 16px;
+      border: 2px solid var(--blue);
+      margin-top: 4px;
+      display: inline-block;
+    }
+
+    .refs {
+      display: grid;
+      gap: 8px;
+      margin-top: 18px;
+    }
+
+    .refs a {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 20px;
+      padding: 14px 16px;
+      background: var(--paper-2);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      color: var(--ink);
+      overflow-wrap: anywhere;
+    }
+
+    .refs span {
+      color: var(--muted);
+      font-family: "Aptos", Arial, sans-serif;
+      font-size: 14px;
+    }
+
+    .screenshot-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 22px;
+    }
+
+    .screenshot-card {
+      margin: 0;
+      background: var(--paper-2);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 12px;
+      min-width: 0;
+    }
+
+    .screenshot-card img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 6px;
+      border: 1px solid rgba(217, 209, 194, 0.9);
+    }
+
+    .screenshot-card figcaption {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .footer {
+      color: var(--muted);
+      padding: 34px 0 56px;
+      font-size: 14px;
+    }
+
+    @media (max-width: 900px) {
+      .wrap { width: min(100vw - 32px, 720px); }
+      .nav {
+        min-height: auto;
+        padding: 14px 0;
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .nav-links {
+        width: 100%;
+        justify-content: flex-start;
+        gap: 10px 14px;
+      }
+      .hero { padding: 48px 0 28px; }
+      h1 { font-size: clamp(34px, 10vw, 42px); }
+      h2 { font-size: clamp(27px, 8vw, 36px); }
+      h3 { font-size: 20px; }
+      .desktop-title { display: none; }
+      .mobile-title { display: inline; }
+      .meta-strip,
+      .grid-2,
+      .grid-3,
+      .grid-4,
+      .screenshot-grid,
+      .split-note {
+        grid-template-columns: 1fr;
+      }
+      .meta-strip div { min-height: auto; }
+      .section { padding: 26px 0; }
+      .section-head {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        margin-bottom: 18px;
+      }
+      .plate,
+      .poster { padding: 22px; }
+      .rule-row {
+        grid-template-columns: 44px 1fr;
+        gap: 10px 14px;
+        padding: 16px;
+      }
+      .rule-row span { grid-column: 2; }
+      .timeline,
+      .flow {
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+      .timeline::before,
+      .flow .step-card:not(:last-child)::after { display: none; }
+      .t-step {
+        display: grid;
+        grid-template-columns: 52px 1fr;
+        text-align: left;
+        gap: 14px;
+        padding: 14px 0;
+        border-bottom: 1px solid var(--line);
+      }
+      .t-step:last-child { border-bottom: 0; }
+      .num { margin-bottom: 0; }
+      .checklist { grid-template-columns: 1fr; }
+      table { min-width: 640px; }
+      th, td { padding: 13px 14px; }
+      .refs a { grid-template-columns: 1fr; gap: 4px; }
+      .refs span { font-size: 12px; }
+      .card, .qa-card, .step-card { min-height: auto; }
+    }
+
+    @media print {
+      html { background: #fff; }
+      body {
+        background: #fff;
+        color: #000;
+      }
+      .topbar { position: static; }
+      .nav-links { display: none; }
+      .section { break-inside: avoid; }
+      .plate { box-shadow: none; }
+    }
+</style>
+</head>
+<body>
+  <header class="topbar">
+    <nav class="wrap nav" aria-label="页面导航">
+      <strong>Apple 充值</strong>
+      <div class="nav-links">
+        <a href="#prepare">前提</a><a href="#why">为什么</a><a href="#topup">充值</a><a href="#channels">购卡</a><a href="#renew">续费</a><a href="#fix">排错</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <div class="kicker">Apple 余额图文版</div>
+        <h1><span class="desktop-title">美区 Apple 账户充值与 App 内购订阅教程</span><span class="mobile-title">美区 Apple<br>充值与内购订阅</span></h1>
+        <p class="lead">美区账号只兑换美区卡。用 Apple Account Balance 支付 App Store 购买、App 内购和订阅。</p>
+        <div class="meta-strip">
+        <div><span>核心路径</span><strong>美区账号 -&gt; US 礼品卡 -&gt; Apple 余额</strong></div>
+        <div><span>主要风险</span><strong>卡区 / 账单 / 风控</strong></div>
+        <div><span>成功信号</span><strong>余额显示美元，可进入内购确认页</strong></div>
+      </div>
+      </div>
+    </section>
+
+    <section id="prepare" class="section">
+    <div class="wrap">
+      <div class="plate">
+        <div class="section-head">
+          <div>
+            <h2>前提条件</h2>
+            <p>先确认账号、礼品卡地区和目标 App 都在美国区路径内。</p>
+          </div>
+          <span class="tag">Prerequisites</span>
+        </div>
+        <div class="grid-3">
+        <article class="card">
+          <h3><span class="dot"></span>美区 Apple Account</h3>
+          <p>账号国家或地区需要是 United States。</p>
+        </article>
+        <article class="card">
+          <h3><span class="dot"></span>App Store 登录美区</h3>
+          <p>iPhone 或 Mac 的 App Store 当前登录同一个美区账号。</p>
+        </article>
+        <article class="card">
+          <h3><span class="dot"></span>稳定美国网络</h3>
+          <p>兑换和购买时使用稳定美国网络，降低地区异常导致的失败。</p>
+        </article>
+        <article class="card">
+          <h3><span class="dot"></span>US Apple Gift Card</h3>
+          <p>只买美国区 Apple Gift Card，不要混用其他国家或地区卡。</p>
+        </article>
+        <article class="card">
+          <h3><span class="dot"></span>只接受兑换码</h3>
+          <p>不把账号密码交给卖家，不让别人代登代充。</p>
+        </article>
+        <article class="card">
+          <h3><span class="dot"></span>目标 App 支持</h3>
+          <p>目标 App 需要在美区可下载，并支持 App 内购买或订阅。</p>
+        </article>
+      </div>
+      </div>
+    </div>
+  </section>
+
+<section id="why" class="section">
+    <div class="wrap">
+      <div class="plate">
+        <div class="section-head">
+          <div>
+            <h2>为什么优先用美区礼品卡</h2>
+            <p>对中国大陆用户来说，大陆信用卡或借记卡直接绑定美区 Apple 账号的成功率和稳定性都不如余额路径。</p>
+          </div>
+          <span class="tag">Payment Choice</span>
+        </div>
+        <div class="rule-list">
+        <div class="rule-row">
+          <strong>添加付款失败</strong>
+          <span>卡组织、发卡地区、账单地址和 Apple 风控都可能拦截。</span>
+        </div>
+        <div class="rule-row">
+          <strong>账单地址失败</strong>
+          <span>Billing Address 与付款方式、账号地区不匹配时容易报错。</span>
+        </div>
+        <div class="rule-row">
+          <strong>订阅扣款失败</strong>
+          <span>首月成功不代表自动续费稳定。</span>
+        </div>
+        <div class="rule-row">
+          <strong>验证要求</strong>
+          <span>可能反复出现 Verification Required 或更新付款方式提示。</span>
+        </div>
+        <div class="rule-row">
+          <strong>账户风险</strong>
+          <span>频繁更换付款方式和地区信息会增加风控概率。</span>
+        </div>
+      </div><div class="callout ok">推荐路径：美区 Apple 账号 + 美国区礼品卡 + Apple Account Balance。</div>
+      </div>
+    </div>
+  </section>
+
+<section id="topup" class="section">
+    <div class="wrap">
+      <div class="plate">
+        <div class="section-head">
+          <div>
+            <h2>充值路径与兑换步骤</h2>
+            <p>买到美国区兑换码后，在 App Store 内兑换到 Apple 账户余额。</p>
+          </div>
+          <span class="tag">Redeem</span>
+        </div>
+        <div class="flow" style="--flow-cols:5">
+        <article class="step-card">
+          <div class="num">01</div>
+          <h3>确认美区账号</h3>
+          <p>App Store 头像页显示账号为美国区。</p>
+        </article>
+        <article class="step-card">
+          <div class="num">02</div>
+          <h3>购买 US 礼品卡</h3>
+          <p>选择正规渠道，只购买美国区 Apple Gift Card。</p>
+        </article>
+        <article class="step-card">
+          <div class="num">03</div>
+          <h3>打开兑换入口</h3>
+          <p>iPhone 进入 App Store 头像页，选择 Redeem Gift Card or Code。</p>
+        </article>
+        <article class="step-card">
+          <div class="num">04</div>
+          <h3>输入兑换码</h3>
+          <p>手动输入或粘贴兑换码，确认兑换。</p>
+        </article>
+        <article class="step-card">
+          <div class="num">05</div>
+          <h3>余额入账</h3>
+          <p>头像页显示美元余额后，再购买 App、内购或订阅。</p>
+        </article>
+      </div><div class="split-note">
+      <article class="route-card">
+        <h3>iPhone / iPad</h3>
+        <ol>
+              <li>打开 App Store。</li>
+              <li>点击右上角头像。</li>
+              <li>选择 Redeem Gift Card or Code。</li>
+              <li>输入美国区兑换码。</li>
+              <li>确认余额显示为美元。</li>
+            </ol>
+      </article>
+      <article class="route-card">
+        <h3>Mac</h3>
+        <ol>
+              <li>打开 Mac App Store。</li>
+              <li>点击左下角账号头像。</li>
+              <li>选择 Redeem Gift Card。</li>
+              <li>输入兑换码并确认。</li>
+              <li>检查 Apple Account Balance。</li>
+            </ol>
+      </article>
+    </div>
+      </div>
+    </div>
+  </section>
+
+<section id="channels" class="section">
+    <div class="wrap">
+      <div class="plate">
+        <div class="section-head">
+          <div>
+            <h2>购卡渠道判断</h2>
+            <p>渠道越便宜，越要确认是否是美区卡、是否已激活、是否有售后。</p>
+          </div>
+          <span class="tag">Channels</span>
+        </div>
+        <div class="table-wrap"><table>
+        <thead><tr><th>渠道</th><th>优点</th><th>风险判断</th></tr></thead>
+        <tbody><tr><td><strong>Apple 美国官网</strong></td><td>来源最稳，官方直出。可从 <a href="https://www.apple.com/shop/buy-giftcard/giftcard/100-dollars">Apple Gift Card 官方购买页</a>进入。</td><td>Guest Checkout 只是不登录 Apple Account 结账，不等于匿名购买；仍可能校验付款卡、邮箱、账单信息和订单风险。</td></tr><tr><td><strong>正规礼品卡平台</strong></td><td>交付快，有基础售后。</td><td>确认是 US Apple Gift Card，不要买错地区。</td></tr><tr><td><strong>支付宝国际版等</strong></td><td>部分用户购买方便，可从首页礼卡活动入口查找。</td><td>折扣、库存、可购买面额、到账时间和售后规则，以购买时页面显示为准。</td></tr><tr><td><strong>第三方卖家</strong></td><td>价格可能更低。</td><td>谨慎黑卡、未激活卡、已兑换卡和代登代充。</td></tr></tbody>
+      </table></div>
+      <div class="split-note">
+        <article class="route-card">
+          <h3>Apple 美国官网</h3>
+          <ol>
+            <li>打开 <a href="https://www.apple.com/shop/buy-giftcard/giftcard/100-dollars">Apple Gift Card $100 官方页</a>。</li>
+            <li>按页面选择面额、收件邮箱和付款方式。</li>
+            <li>如果选择 Guest Checkout，理解为不登录 Apple Account 结账。</li>
+            <li>保留订单邮件和礼品卡邮件，兑换后保存记录。</li>
+          </ol>
+        </article>
+        <article class="route-card">
+          <h3>支付宝国际版路径</h3>
+          <ol>
+            <li>登录后先把左上角定位切到美国城市，一般选择旧金山。</li>
+            <li>确认首页左上角显示“旧金山”，再继续操作。</li>
+            <li>首页点击“大牌礼卡”等活动广告入口。</li>
+            <li>进入后往下拉到“更多大牌折扣礼卡”。</li>
+            <li>查看 PockytShop 和 YouWorld 两个店铺入口。</li>
+            <li>PockytShop 中可能有 App Store &amp; iTunes USA 和 Apple Gift Card USA 两个 Apple 入口。</li>
+            <li>截图里靠上的 App Store &amp; iTunes USA 显示 0.20% 优惠；YouWorld 也可能显示 0.20%，但有时会售罄。</li>
+          </ol>
+        </article>
+      </div>
+      <div class="screenshot-grid">
+        <figure class="screenshot-card">
+          <img src="assets/美区Apple账户充值与App内购订阅教程/01-支付宝国际版首页大牌礼卡入口.jpg" alt="支付宝国际版首页切换旧金山并进入大牌礼卡活动入口">
+          <figcaption>登录后先把定位切到美国城市，通常选旧金山；再点击“大牌礼卡”等活动入口。</figcaption>
+        </figure>
+        <figure class="screenshot-card">
+          <img src="assets/美区Apple账户充值与App内购订阅教程/02-PockytShop与YouWorld入口.jpg" alt="支付宝国际版活动页中的 PockytShop 和 YouWorld 入口">
+          <figcaption>活动页下拉到“更多大牌折扣礼卡”，可看到 PockytShop 和 YouWorld。</figcaption>
+        </figure>
+        <figure class="screenshot-card">
+          <img src="assets/美区Apple账户充值与App内购订阅教程/03-PockytShop内Apple礼品卡入口.jpg" alt="PockytShop 内的 App Store & iTunes USA 和 Apple Gift Card USA 入口">
+          <figcaption>PockytShop 内的 Apple 相关入口，折扣和库存以页面显示为准。</figcaption>
+        </figure>
+      </div>
+      <div class="callout amber">折扣和库存不是固定承诺。购买前先核对商品名称是否包含 USA / US / United States，并确认只交付兑换码，不需要提供 Apple ID 密码。</div>
+      <div class="callout danger">红线：不代登、不代充、不交 Apple 密码、不囤大量低价余额、不购买明显异常低价卡。</div>
+      </div>
+    </div>
+  </section>
+
+<section id="renew" class="section">
+    <div class="wrap">
+      <div class="plate">
+        <div class="section-head">
+          <div>
+            <h2>余额与自动续费</h2>
+            <p>Apple 余额通常会优先用于 App Store 消费和订阅续费，但仍要在续费日前检查余额。</p>
+          </div>
+          <span class="tag">Balance &amp; Renewal</span>
+        </div>
+        <div class="checklist">
+        <div class="check"><span>在 App Store 头像页查看 Apple Account Balance。</span></div>
+        <div class="check"><span>续费日前确保余额高于下一期订阅金额和税费。</span></div>
+        <div class="check"><span>余额不足时，Apple 可能尝试其他付款方式或导致续费失败。</span></div>
+        <div class="check"><span>取消订阅路径：设置 -&gt; Apple 账号 -&gt; 订阅。</span></div>
+        <div class="check"><span>删除 App 不等于取消订阅。</span></div>
+        <div class="check"><span>余额通常不能提现，也不能跨国家或地区转移。</span></div>
+      </div>
+      </div>
+    </div>
+  </section>
+
+<section id="fix" class="section">
+    <div class="wrap">
+      <div class="plate">
+        <div class="section-head">
+          <div>
+            <h2>常见问题排查</h2>
+            <p>充值失败大多来自卡区不匹配、兑换码状态异常或账号风控。</p>
+          </div>
+          <span class="tag">Troubleshooting</span>
+        </div>
+        <div class="table-wrap"><table>
+        <thead><tr><th>提示</th><th>原因</th><th>处理</th></tr></thead>
+        <tbody><tr><td><strong>必须在另一个国家兑换</strong></td><td>礼品卡国家或地区与 Apple 账号地区不一致。</td><td>美区账号只兑换 US 卡。</td></tr><tr><td><strong>兑换码无效</strong></td><td>输入错误、卡未激活或码不存在。</td><td>核对字符，联系售卡渠道。</td></tr><tr><td><strong>已兑换</strong></td><td>兑换码已被使用。</td><td>联系渠道售后，提供购买凭证。</td></tr><tr><td><strong>未激活</strong></td><td>实体卡或渠道卡没有激活成功。</td><td>找销售方处理激活。</td></tr><tr><td><strong>余额够但内购失败</strong></td><td>地区、网络、账单或 App 内购状态异常。</td><td>确认美区 App Store、美国网络、订阅状态和 Apple 购买记录。</td></tr></tbody>
+      </table></div>
+      </div>
+    </div>
+  </section>
+
+    <section id="refs" class="section">
+      <div class="wrap">
+        <div class="plate">
+          <div class="section-head">
+            <div>
+              <h2>官方参考</h2>
+              <p>教程以官方帮助文档和实际操作经验为基础；界面和政策可能变化，操作前建议再核对一次。</p>
+            </div>
+            <span class="tag">References</span>
+          </div>
+          <div class="refs"><a href="https://www.apple.com/shop/buy-giftcard/giftcard/100-dollars"><strong>Buy $100 Apple Gift Cards</strong><span>apple.com/shop/buy-giftcard/giftcard/100-dollars</span></a><a href="https://support.apple.com/en-us/118242"><strong>Redeem Apple Gift Card</strong><span>support.apple.com/en-us/118242</span></a><a href="https://support.apple.com/en-us/118297"><strong>Apple Account balance</strong><span>support.apple.com/en-us/118297</span></a><a href="https://support.apple.com/en-us/118283"><strong>Change Apple Account country or region</strong><span>support.apple.com/en-us/118283</span></a><a href="https://support.apple.com/en-us/118428"><strong>View or cancel subscriptions</strong><span>support.apple.com/en-us/118428</span></a><a href="https://support.apple.com/en-us/108095"><strong>If your payment method is declined</strong><span>support.apple.com/en-us/108095</span></a></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="wrap footer">
+    <p>作者：ymzhang。由 Markdown 教程生成的单文件 HTML 版本。最后整理：2026-05-22。</p>
+  </footer>
+</body>
+</html>

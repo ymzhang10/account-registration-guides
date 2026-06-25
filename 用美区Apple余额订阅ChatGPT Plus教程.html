@@ -1,0 +1,880 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>用美区 Apple 余额订阅 ChatGPT Plus 教程</title>
+  <meta name="author" content="ymzhang">
+  <style>
+    :root {
+      --paper: #f8f5ef;
+      --paper-2: #fffdf8;
+      --ink: #15171c;
+      --muted: #4b5563;
+      --soft: #efe8da;
+      --line: #d9d1c2;
+      --blue: #2563eb;
+      --teal: #0f766e;
+      --amber: #b45309;
+      --red: #dc2626;
+      --green: #15803d;
+      --panel: #ffffff;
+      --shadow: 0 18px 48px rgba(21, 23, 28, 0.08);
+      --radius: 8px;
+      font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", "Helvetica Neue", Arial, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--paper);
+      overflow-x: hidden;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        linear-gradient(90deg, rgba(37, 99, 235, 0.06) 1px, transparent 1px),
+        linear-gradient(180deg, rgba(37, 99, 235, 0.04) 1px, transparent 1px),
+        var(--paper);
+      background-size: 80px 80px;
+      line-height: 1.72;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: var(--blue);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(37, 99, 235, 0.25);
+    }
+
+    a:hover { border-bottom-color: var(--blue); }
+
+    code {
+      background: var(--soft);
+      border: 1px solid var(--line);
+      padding: 1px 6px;
+      border-radius: 4px;
+      font-family: "SFMono-Regular", Consolas, monospace;
+      font-size: 0.92em;
+    }
+
+    .wrap {
+      width: min(1120px, calc(100vw - 40px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(14px);
+      background: rgba(248, 245, 239, 0.9);
+      border-bottom: 1px solid rgba(217, 209, 194, 0.75);
+    }
+
+    .nav {
+      min-height: 62px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .nav strong {
+      color: var(--ink);
+      font-size: 16px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      border: 0;
+    }
+
+    .hero { padding: 76px 0 44px; }
+
+    .kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--muted);
+      font-weight: 700;
+      letter-spacing: 0;
+      margin-bottom: 22px;
+    }
+
+    .kicker::before {
+      content: "";
+      width: 30px;
+      height: 4px;
+      background: var(--blue);
+      display: inline-block;
+    }
+
+    h1, h2, h3 {
+      letter-spacing: 0;
+      line-height: 1.18;
+      margin: 0;
+    }
+
+    h1 {
+      font-size: clamp(40px, 7vw, 76px);
+      max-width: 1000px;
+      margin-bottom: 22px;
+      overflow-wrap: anywhere;
+    }
+
+    h2 {
+      font-size: clamp(28px, 4.8vw, 48px);
+      margin-bottom: 14px;
+    }
+
+    h3 {
+      font-size: 22px;
+      margin-bottom: 10px;
+    }
+
+    p { margin: 0; }
+
+    .lead {
+      max-width: 860px;
+      font-size: clamp(18px, 2.6vw, 24px);
+      color: var(--muted);
+      margin-bottom: 32px;
+      overflow-wrap: anywhere;
+    }
+
+    .mobile-title { display: none; }
+
+    .meta-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--line);
+      border: 1px solid var(--line);
+      margin-top: 32px;
+    }
+
+    .meta-strip div {
+      background: var(--paper-2);
+      padding: 18px 20px;
+      min-height: 96px;
+    }
+
+    .meta-strip span {
+      display: block;
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 4px;
+    }
+
+    .meta-strip strong { font-size: 18px; }
+
+    .section { padding: 42px 0; }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: end;
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+
+    .section-head p {
+      color: var(--muted);
+      max-width: 780px;
+      font-size: 18px;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      min-height: 30px;
+      padding: 4px 12px;
+      border: 1px solid var(--line);
+      background: var(--paper-2);
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .plate {
+      background: rgba(255, 253, 248, 0.96);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      padding: clamp(22px, 4vw, 42px);
+      border-radius: var(--radius);
+    }
+
+    .poster {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: clamp(20px, 3vw, 34px);
+      min-width: 0;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .callout {
+      border-left: 6px solid var(--blue);
+      background: #eef4ff;
+      padding: 18px 20px;
+      margin-top: 20px;
+      color: #1f2937;
+      font-weight: 700;
+      overflow-wrap: anywhere;
+    }
+
+    .danger {
+      border-left-color: var(--red);
+      background: #fff1f1;
+    }
+
+    .ok {
+      border-left-color: var(--teal);
+      background: #edfdfa;
+    }
+
+    .amber {
+      border-left-color: var(--amber);
+      background: #fff7e8;
+    }
+
+    .card,
+    .qa-card,
+    .step-card {
+      background: var(--paper-2);
+      border: 1px solid var(--line);
+      padding: 20px;
+      border-radius: var(--radius);
+      min-height: 150px;
+      min-width: 0;
+      overflow-wrap: anywhere;
+    }
+
+    .card .dot,
+    .qa-card .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      display: inline-block;
+      margin-right: 8px;
+      background: var(--blue);
+      flex: none;
+    }
+
+    .card:nth-child(2) .dot,
+    .card:nth-child(6) .dot,
+    .qa-card:nth-child(2) .dot { background: var(--teal); }
+
+    .card:nth-child(3) .dot,
+    .card:nth-child(5) .dot,
+    .qa-card:nth-child(3) .dot { background: var(--amber); }
+
+    .card h3,
+    .qa-card h3 {
+      display: flex;
+      align-items: center;
+      margin-bottom: 12px;
+      overflow-wrap: anywhere;
+    }
+
+    .card p,
+    .qa-card p,
+    .step-card p {
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .rule-list {
+      counter-reset: rule;
+      display: grid;
+      gap: 0;
+      border: 1px solid var(--line);
+      background: var(--line);
+    }
+
+    .rule-row {
+      counter-increment: rule;
+      display: grid;
+      grid-template-columns: 70px 260px 1fr;
+      gap: 20px;
+      align-items: center;
+      background: var(--paper-2);
+      padding: 18px 22px;
+      min-width: 0;
+    }
+
+    .rule-row + .rule-row { border-top: 1px solid var(--line); }
+
+    .rule-row::before {
+      content: counter(rule, decimal-leading-zero);
+      color: var(--blue);
+      font-weight: 800;
+      font-family: "Aptos", Arial, sans-serif;
+    }
+
+    .rule-row:nth-child(2)::before,
+    .rule-row:nth-child(5)::before { color: var(--red); }
+
+    .rule-row strong {
+      font-size: 20px;
+      overflow-wrap: anywhere;
+    }
+
+    .rule-row span {
+      color: var(--muted);
+      overflow-wrap: anywhere;
+    }
+
+    .timeline {
+      display: grid;
+      grid-template-columns: repeat(var(--steps, 5), 1fr);
+      gap: 0;
+      margin: 28px 0;
+      position: relative;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 7%;
+      right: 7%;
+      top: 26px;
+      height: 2px;
+      background: var(--line);
+    }
+
+    .t-step {
+      position: relative;
+      text-align: center;
+      padding: 0 10px;
+      min-width: 0;
+    }
+
+    .num {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--blue);
+      color: #fff;
+      font-weight: 800;
+      font-family: "Aptos", Arial, sans-serif;
+      position: relative;
+      z-index: 2;
+      margin-bottom: 16px;
+      flex: none;
+    }
+
+    .t-step:nth-child(4) .num,
+    .step-card:nth-child(4) .num { background: var(--amber); }
+
+    .t-step:nth-child(5) .num,
+    .step-card:nth-child(5) .num { background: var(--teal); }
+
+    .t-step strong {
+      display: block;
+      font-size: 18px;
+      margin-bottom: 8px;
+      overflow-wrap: anywhere;
+    }
+
+    .t-step span {
+      display: block;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.45;
+      overflow-wrap: anywhere;
+    }
+
+    .flow {
+      display: grid;
+      grid-template-columns: repeat(var(--flow-cols, 5), 1fr);
+      gap: 16px;
+      align-items: stretch;
+    }
+
+    .flow .step-card { position: relative; }
+
+    .flow .step-card:not(:last-child)::after {
+      content: "";
+      position: absolute;
+      right: -16px;
+      top: 50%;
+      width: 16px;
+      height: 2px;
+      background: var(--line);
+    }
+
+    .step-card .num {
+      width: 34px;
+      height: 34px;
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+
+    .copy-block {
+      display: grid;
+      gap: 18px;
+      font-size: 17px;
+      min-width: 0;
+      overflow-wrap: anywhere;
+    }
+
+    .copy-block h3 { margin-top: 10px; }
+
+    .copy-block ul,
+    .copy-block ol {
+      margin: 12px 0 0;
+      padding-left: 22px;
+    }
+
+    .copy-block li { margin: 6px 0; }
+
+    .split-note {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      margin-top: 24px;
+    }
+
+    .route-card {
+      border: 1px solid var(--line);
+      background: var(--paper-2);
+      padding: 24px;
+      border-radius: var(--radius);
+      min-height: 220px;
+      min-width: 0;
+      overflow-wrap: anywhere;
+    }
+
+    .route-card ol,
+    .route-card ul {
+      margin: 14px 0 0;
+      padding-left: 22px;
+    }
+
+    .route-card li { margin: 6px 0; }
+
+    .label-red {
+      color: var(--red);
+      font-weight: 800;
+      margin-top: 12px;
+      display: inline-block;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--line);
+      background: var(--paper-2);
+      border-radius: var(--radius);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 720px;
+    }
+
+    th, td {
+      text-align: left;
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+    }
+
+    th {
+      color: var(--muted);
+      font-size: 14px;
+      background: rgba(239, 232, 218, 0.45);
+    }
+
+    td strong { color: var(--blue); }
+    tr:last-child td { border-bottom: 0; }
+
+    .checklist {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .check {
+      border: 1px solid var(--line);
+      background: var(--paper-2);
+      padding: 14px 16px;
+      border-radius: var(--radius);
+      display: grid;
+      grid-template-columns: 22px 1fr;
+      gap: 10px;
+      align-items: start;
+      overflow-wrap: anywhere;
+    }
+
+    .check::before {
+      content: "";
+      width: 16px;
+      height: 16px;
+      border: 2px solid var(--blue);
+      margin-top: 4px;
+      display: inline-block;
+    }
+
+    .refs {
+      display: grid;
+      gap: 8px;
+      margin-top: 18px;
+    }
+
+    .refs a {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 20px;
+      padding: 14px 16px;
+      background: var(--paper-2);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      color: var(--ink);
+      overflow-wrap: anywhere;
+    }
+
+    .refs span {
+      color: var(--muted);
+      font-family: "Aptos", Arial, sans-serif;
+      font-size: 14px;
+    }
+
+    .footer {
+      color: var(--muted);
+      padding: 34px 0 56px;
+      font-size: 14px;
+    }
+
+    @media (max-width: 900px) {
+      .wrap { width: min(100vw - 32px, 720px); }
+      .nav {
+        min-height: auto;
+        padding: 14px 0;
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .nav-links {
+        width: 100%;
+        justify-content: flex-start;
+        gap: 10px 14px;
+      }
+      .hero { padding: 48px 0 28px; }
+      h1 { font-size: clamp(34px, 10vw, 42px); }
+      h2 { font-size: clamp(27px, 8vw, 36px); }
+      h3 { font-size: 20px; }
+      .desktop-title { display: none; }
+      .mobile-title { display: inline; }
+      .meta-strip,
+      .grid-2,
+      .grid-3,
+      .grid-4,
+      .split-note {
+        grid-template-columns: 1fr;
+      }
+      .meta-strip div { min-height: auto; }
+      .section { padding: 26px 0; }
+      .section-head {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        margin-bottom: 18px;
+      }
+      .plate,
+      .poster { padding: 22px; }
+      .rule-row {
+        grid-template-columns: 44px 1fr;
+        gap: 10px 14px;
+        padding: 16px;
+      }
+      .rule-row span { grid-column: 2; }
+      .timeline,
+      .flow {
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+      .timeline::before,
+      .flow .step-card:not(:last-child)::after { display: none; }
+      .t-step {
+        display: grid;
+        grid-template-columns: 52px 1fr;
+        text-align: left;
+        gap: 14px;
+        padding: 14px 0;
+        border-bottom: 1px solid var(--line);
+      }
+      .t-step:last-child { border-bottom: 0; }
+      .num { margin-bottom: 0; }
+      .checklist { grid-template-columns: 1fr; }
+      table { min-width: 640px; }
+      th, td { padding: 13px 14px; }
+      .refs a { grid-template-columns: 1fr; gap: 4px; }
+      .refs span { font-size: 12px; }
+      .card, .qa-card, .step-card { min-height: auto; }
+    }
+
+    @media print {
+      html { background: #fff; }
+      body {
+        background: #fff;
+        color: #000;
+      }
+      .topbar { position: static; }
+      .nav-links { display: none; }
+      .section { break-inside: avoid; }
+      .plate { box-shadow: none; }
+    }
+</style>
+</head>
+<body>
+  <header class="topbar">
+    <nav class="wrap nav" aria-label="页面导航">
+      <strong>Plus 订阅</strong>
+      <div class="nav-links">
+        <a href="#prepare">前提</a><a href="#before">检查</a><a href="#subscribe">订阅</a><a href="#manage">管理</a><a href="#fix">排错</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <div class="kicker">ChatGPT Plus 订阅图文版</div>
+        <h1><span class="desktop-title">用美区 Apple 余额订阅 ChatGPT Plus 教程</span><span class="mobile-title">美区 Apple 余额<br>订阅 ChatGPT Plus</span></h1>
+        <p class="lead">通过官方 ChatGPT iOS App，用美区 Apple Account Balance 完成 Plus 订阅。订阅、取消和退款主要走 Apple 体系。</p>
+        <div class="meta-strip">
+        <div><span>核心路径</span><strong>美区 Apple 余额 -&gt; ChatGPT iOS App -&gt; Plus</strong></div>
+        <div><span>付款管理</span><strong>Apple App Store</strong></div>
+        <div><span>风险提醒</span><strong>避免跨平台重复订阅</strong></div>
+      </div>
+      </div>
+    </section>
+
+    <section id="prepare" class="section">
+    <div class="wrap">
+      <div class="plate">
+        <div class="section-head">
+          <div>
+            <h2>前提条件</h2>
+            <p>这条路线本质是 Apple App Store 内购订阅，不是网页端银行卡订阅。</p>
+          </div>
+          <span class="tag">Prerequisites</span>
+        </div>
+        <div class="grid-3">
+        <article class="card">
+          <h3><span class="dot"></span>美国区 Apple Account</h3>
+          <p>App Store 当前登录的是美区 Apple 账号。</p>
+        </article>
+        <article class="card">
+          <h3><span class="dot"></span>Apple 余额足够</h3>
+          <p>余额需要覆盖 Plus 订阅价格和可能产生的税费。</p>
+        </article>
+        <article class="card">
+          <h3><span class="dot"></span>官方 ChatGPT App</h3>
+          <p>只使用 OpenAI 官方 ChatGPT iOS App，不用第三方套壳应用。</p>
+        </article>
+        <article class="card">
+          <h3><span class="dot"></span>自己的 ChatGPT 账号</h3>
+          <p>登录要开通 Plus 的目标账号，避免订错账号。</p>
+        </article>
+        <article class="card">
+          <h3><span class="dot"></span>iPhone / iPad</h3>
+          <p>通过 iOS 或 iPadOS App 内购确认订阅。</p>
+        </article>
+        <article class="card">
+          <h3><span class="dot"></span>稳定美国网络</h3>
+          <p>下载、登录和订阅确认时保持网络环境稳定。</p>
+        </article>
+      </div>
+      </div>
+    </div>
+  </section>
+
+<section id="before" class="section">
+    <div class="wrap">
+      <div class="plate">
+        <div class="section-head">
+          <div>
+            <h2>订阅前检查</h2>
+            <p>先把账号、余额、App 和订阅状态检查完，再点击购买。</p>
+          </div>
+          <span class="tag">Checklist</span>
+        </div>
+        <div class="checklist">
+        <div class="check"><span>App Store 头像页确认是美区账号。</span></div>
+        <div class="check"><span>Apple Account Balance 显示美元且余额足够。</span></div>
+        <div class="check"><span>ChatGPT App 来自 OpenAI 官方。</span></div>
+        <div class="check"><span>ChatGPT App 中登录的是目标账号。</span></div>
+        <div class="check"><span>确认没有网页端、Google Play 或其他渠道的有效订阅。</span></div>
+        <div class="check"><span>确认可以收到 Apple 购买收据邮件。</span></div>
+      </div>
+      </div>
+    </div>
+  </section>
+
+<section id="subscribe" class="section">
+    <div class="wrap">
+      <div class="plate">
+        <div class="section-head">
+          <div>
+            <h2>订阅步骤</h2>
+            <p>从美区 App Store 下载官方 App，然后通过 Apple 订阅确认页完成购买。</p>
+          </div>
+          <span class="tag">Subscribe Flow</span>
+        </div>
+        <div class="flow" style="--flow-cols:6">
+        <article class="step-card">
+          <div class="num">01</div>
+          <h3>确认美区 App Store</h3>
+          <p>头像页检查账号地区和 Apple 余额。</p>
+        </article>
+        <article class="step-card">
+          <div class="num">02</div>
+          <h3>下载 ChatGPT</h3>
+          <p>搜索 ChatGPT，确认开发者为 OpenAI。</p>
+        </article>
+        <article class="step-card">
+          <div class="num">03</div>
+          <h3>登录账号</h3>
+          <p>用自己的 ChatGPT 账号登录 App。</p>
+        </article>
+        <article class="step-card">
+          <div class="num">04</div>
+          <h3>点击升级</h3>
+          <p>进入 Get Plus / Upgrade / Subscription 入口。</p>
+        </article>
+        <article class="step-card">
+          <div class="num">05</div>
+          <h3>确认 Apple 订阅</h3>
+          <p>核对价格、周期和 Apple ID。</p>
+        </article>
+        <article class="step-card">
+          <div class="num">06</div>
+          <h3>完成确认</h3>
+          <p>用 Face ID、Touch ID 或密码确认订阅，等待 Plus 生效。</p>
+        </article>
+      </div>
+      </div>
+    </div>
+  </section>
+
+<section id="manage" class="section">
+    <div class="wrap">
+      <div class="plate">
+        <div class="section-head">
+          <div>
+            <h2>付款、续费、取消与恢复</h2>
+            <p>iOS 内购订阅由 Apple 管理，账单和退款也主要走 Apple。</p>
+          </div>
+          <span class="tag">Renewal</span>
+        </div>
+        <div class="grid-2">
+        <div class="poster copy-block">
+          <h3>续费逻辑</h3>
+          <p>订阅建立后，Apple 会在续费日附近从 Apple Account Balance 或其他可用付款方式扣款。续费日前检查余额，避免扣款失败。</p>
+          <p>购买记录和收据可在 Apple 购买记录、订阅管理页和邮箱中查看。</p>
+        </div>
+        <div class="poster copy-block">
+          <h3>取消与恢复</h3>
+          <p>取消路径：设置 -> Apple 账号 -> 订阅 -> ChatGPT -> 取消订阅。</p>
+          <p>如果 App 内未显示 Plus，可尝试 Restore purchases。删除 App 或退出账号不等于取消订阅。</p>
+        </div>
+      </div>
+      <div class="callout amber">避免在同一个 ChatGPT 账号上同时开通网页端订阅和 iOS 内购订阅，先确认当前订阅状态再操作。</div>
+      </div>
+    </div>
+  </section>
+
+<section id="pro" class="section">
+    <div class="wrap">
+      <div class="plate">
+        <div class="section-head">
+          <div>
+            <h2>Plus 与 Pro 的区别提醒</h2>
+            <p>这篇教程只覆盖 ChatGPT Plus 的 iOS 内购路径。</p>
+          </div>
+          <span class="tag">Plan Scope</span>
+        </div>
+        <div class="poster copy-block">
+        <h3>只针对 Plus</h3>
+        <p>如果你要订阅的是 ChatGPT Pro，按当前官方说明，Pro 需要在网页端完成订阅，而不是通过这里的 iOS Plus 内购路径。</p>
+      </div>
+      </div>
+    </div>
+  </section>
+
+<section id="fix" class="section">
+    <div class="wrap">
+      <div class="plate">
+        <div class="section-head">
+          <div>
+            <h2>常见问题排查</h2>
+            <p>订阅异常时，先判断问题发生在 Apple 付款层、ChatGPT 账号层，还是跨平台订阅状态。</p>
+          </div>
+          <span class="tag">Troubleshooting</span>
+        </div>
+        <div class="table-wrap"><table>
+        <thead><tr><th>问题</th><th>可能原因</th><th>处理</th></tr></thead>
+        <tbody><tr><td><strong>购买按钮灰色</strong></td><td>App、账号地区或订阅入口异常。</td><td>确认官方 App、美区 App Store、目标账号和网络环境。</td></tr><tr><td><strong>余额足够但付款失败</strong></td><td>税费、风控、账单或 Apple 账号状态问题。</td><td>检查 Apple 购买记录和付款设置，必要时联系 Apple 支持。</td></tr><tr><td><strong>已经网页订阅</strong></td><td>同一账号可能已有其他渠道订阅。</td><td>先取消或等待原订阅周期结束，避免重复订阅。</td></tr><tr><td><strong>iOS 订阅网页端能否用</strong></td><td>Plus 权益绑定 ChatGPT 账号，不只限 iOS。</td><td>确认登录同一个 ChatGPT 账号。</td></tr><tr><td><strong>需要退款</strong></td><td>Apple 管理的内购订阅通常通过 Apple 申请退款。</td><td>走 Apple reportaproblem 流程。</td></tr></tbody>
+      </table></div>
+      </div>
+    </div>
+  </section>
+
+    <section id="refs" class="section">
+      <div class="wrap">
+        <div class="plate">
+          <div class="section-head">
+            <div>
+              <h2>官方参考</h2>
+              <p>教程以官方帮助文档和实际操作经验为基础；界面和政策可能变化，操作前建议再核对一次。</p>
+            </div>
+            <span class="tag">References</span>
+          </div>
+          <div class="refs"><a href="https://apps.apple.com/us/app/chatgpt/id6448311069"><strong>ChatGPT iOS App</strong><span>apps.apple.com/us/app/chatgpt/id6448311069</span></a><a href="https://support.apple.com/en-us/118428"><strong>Manage Apple subscriptions</strong><span>support.apple.com/en-us/118428</span></a><a href="https://support.apple.com/en-us/118223"><strong>Request a refund from Apple</strong><span>support.apple.com/en-us/118223</span></a><a href="https://support.apple.com/en-us/118297"><strong>Apple Account balance</strong><span>support.apple.com/en-us/118297</span></a><a href="https://openai.com/chatgpt/pricing/"><strong>ChatGPT pricing</strong><span>openai.com/chatgpt/pricing/</span></a></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="wrap footer">
+    <p>作者：ymzhang。由 Markdown 教程生成的单文件 HTML 版本。最后整理：2026-05-22。</p>
+  </footer>
+</body>
+</html>

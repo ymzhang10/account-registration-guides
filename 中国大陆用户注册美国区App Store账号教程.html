@@ -1,0 +1,1233 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>中国大陆用户注册美国区 App Store 账号教程</title>
+  <meta name="author" content="ymzhang">
+  <meta name="source" content="40-Resources/教程/账号申请类/中国大陆用户注册美国区App Store账号教程.md">
+  <style>
+    :root {
+      --paper: #f8f5ef;
+      --paper-2: #fffdf8;
+      --ink: #15171c;
+      --muted: #4b5563;
+      --soft: #efe8da;
+      --line: #d9d1c2;
+      --blue: #2563eb;
+      --teal: #0f766e;
+      --amber: #b45309;
+      --red: #dc2626;
+      --green: #15803d;
+      --panel: #ffffff;
+      --shadow: 0 18px 48px rgba(21, 23, 28, 0.08);
+      --radius: 8px;
+      font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", "Helvetica Neue", Arial, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--paper);
+      overflow-x: hidden;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        linear-gradient(90deg, rgba(37, 99, 235, 0.06) 1px, transparent 1px),
+        linear-gradient(180deg, rgba(37, 99, 235, 0.04) 1px, transparent 1px),
+        var(--paper);
+      background-size: 80px 80px;
+      line-height: 1.72;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: var(--blue);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(37, 99, 235, 0.25);
+    }
+
+    a:hover {
+      border-bottom-color: var(--blue);
+    }
+
+    .wrap {
+      width: min(1120px, calc(100vw - 40px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(14px);
+      background: rgba(248, 245, 239, 0.9);
+      border-bottom: 1px solid rgba(217, 209, 194, 0.75);
+    }
+
+    .nav {
+      min-height: 62px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .nav strong {
+      color: var(--ink);
+      font-size: 16px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      border: 0;
+    }
+
+    .hero {
+      padding: 76px 0 44px;
+    }
+
+    .kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--muted);
+      font-weight: 700;
+      letter-spacing: 0;
+      margin-bottom: 22px;
+    }
+
+    .kicker::before {
+      content: "";
+      width: 30px;
+      height: 4px;
+      background: var(--blue);
+      display: inline-block;
+    }
+
+    h1,
+    h2,
+    h3 {
+      letter-spacing: 0;
+      line-height: 1.18;
+      margin: 0;
+    }
+
+    h1 {
+      font-size: clamp(40px, 7vw, 76px);
+      max-width: 980px;
+      margin-bottom: 22px;
+      overflow-wrap: anywhere;
+    }
+
+    h2 {
+      font-size: clamp(28px, 4.8vw, 48px);
+      margin-bottom: 14px;
+    }
+
+    h3 {
+      font-size: 22px;
+      margin-bottom: 10px;
+    }
+
+    p {
+      margin: 0;
+    }
+
+    .lead {
+      max-width: 820px;
+      font-size: clamp(18px, 2.6vw, 24px);
+      color: var(--muted);
+      margin-bottom: 32px;
+      overflow-wrap: anywhere;
+    }
+
+    .mobile-title {
+      display: none;
+    }
+
+    .meta-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--line);
+      border: 1px solid var(--line);
+      margin-top: 32px;
+    }
+
+    .meta-strip div {
+      background: var(--paper-2);
+      padding: 18px 20px;
+      min-height: 92px;
+    }
+
+    .meta-strip span {
+      display: block;
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 4px;
+    }
+
+    .meta-strip strong {
+      font-size: 18px;
+    }
+
+    .section {
+      padding: 42px 0;
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: end;
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+
+    .section-head p {
+      color: var(--muted);
+      max-width: 780px;
+      font-size: 18px;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      height: 30px;
+      padding: 0 12px;
+      border: 1px solid var(--line);
+      background: var(--paper-2);
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .plate {
+      background: rgba(255, 253, 248, 0.96);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      padding: clamp(22px, 4vw, 42px);
+      border-radius: var(--radius);
+    }
+
+    .poster {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: clamp(20px, 3vw, 34px);
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .grid-5 {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 14px;
+    }
+
+    .callout {
+      border-left: 6px solid var(--blue);
+      background: #eef4ff;
+      padding: 18px 20px;
+      margin-top: 20px;
+      color: #1f2937;
+      font-weight: 700;
+    }
+
+    .danger {
+      border-left-color: var(--red);
+      background: #fff1f1;
+    }
+
+    .ok {
+      border-left-color: var(--teal);
+      background: #edfdfa;
+    }
+
+    .account-map {
+      display: grid;
+      grid-template-columns: 1fr 120px 1fr;
+      gap: 20px;
+      align-items: center;
+      margin-top: 22px;
+    }
+
+    .account-box {
+      border: 1px solid var(--line);
+      background: var(--paper-2);
+      padding: 28px;
+      min-height: 220px;
+      position: relative;
+    }
+
+    .account-box::after {
+      content: "";
+      position: absolute;
+      right: 24px;
+      top: 24px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--teal);
+    }
+
+    .account-box.alt::after {
+      background: var(--blue);
+    }
+
+    .account-box strong {
+      display: block;
+      font-size: 28px;
+      margin-bottom: 10px;
+    }
+
+    .account-box small {
+      display: block;
+      color: var(--muted);
+      font-size: 16px;
+      margin-bottom: 30px;
+    }
+
+    .account-box b {
+      color: var(--teal);
+      font-size: 22px;
+    }
+
+    .account-box.alt b {
+      color: var(--blue);
+    }
+
+    .bridge {
+      text-align: center;
+      color: var(--muted);
+      font-weight: 700;
+      position: relative;
+    }
+
+    .bridge::before,
+    .bridge::after {
+      content: "";
+      display: block;
+      height: 1px;
+      background: var(--line);
+      margin: 14px 0;
+    }
+
+    .prep-item,
+    .rule-item,
+    .qa-card,
+    .step-card {
+      background: var(--paper-2);
+      border: 1px solid var(--line);
+      padding: 20px;
+      border-radius: var(--radius);
+      min-height: 150px;
+      min-width: 0;
+    }
+
+    .prep-item .dot,
+    .qa-card .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      display: inline-block;
+      margin-right: 8px;
+      background: var(--blue);
+    }
+
+    .prep-item:nth-child(2) .dot,
+    .prep-item:nth-child(6) .dot,
+    .qa-card:nth-child(2) .dot {
+      background: var(--teal);
+    }
+
+    .prep-item:nth-child(3) .dot,
+    .prep-item:nth-child(5) .dot,
+    .qa-card:nth-child(3) .dot {
+      background: var(--amber);
+    }
+
+    .prep-item h3,
+    .qa-card h3 {
+      display: flex;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .prep-item p,
+    .qa-card p,
+    .step-card p,
+    .rule-item p {
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .rule-list {
+      counter-reset: rule;
+      display: grid;
+      gap: 0;
+      border: 1px solid var(--line);
+      background: var(--line);
+    }
+
+    .rule-row {
+      counter-increment: rule;
+      display: grid;
+      grid-template-columns: 70px 240px 1fr;
+      gap: 20px;
+      align-items: center;
+      background: var(--paper-2);
+      padding: 18px 22px;
+    }
+
+    .rule-row + .rule-row {
+      border-top: 1px solid var(--line);
+    }
+
+    .rule-row::before {
+      content: counter(rule, decimal-leading-zero);
+      color: var(--blue);
+      font-weight: 800;
+      font-family: "Aptos", Arial, sans-serif;
+    }
+
+    .rule-row:nth-child(2)::before,
+    .rule-row:nth-child(5)::before {
+      color: var(--red);
+    }
+
+    .rule-row strong {
+      font-size: 20px;
+    }
+
+    .rule-row span {
+      color: var(--muted);
+    }
+
+    .timeline {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 0;
+      margin: 28px 0;
+      position: relative;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 7%;
+      right: 7%;
+      top: 26px;
+      height: 2px;
+      background: var(--line);
+    }
+
+    .t-step {
+      position: relative;
+      text-align: center;
+      padding: 0 10px;
+    }
+
+    .num {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--blue);
+      color: #fff;
+      font-weight: 800;
+      font-family: "Aptos", Arial, sans-serif;
+      position: relative;
+      z-index: 2;
+      margin-bottom: 16px;
+    }
+
+    .t-step:nth-child(5) .num {
+      background: var(--amber);
+    }
+
+    .t-step:nth-child(6) .num {
+      background: var(--teal);
+    }
+
+    .t-step strong {
+      display: block;
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+
+    .t-step span {
+      display: block;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.45;
+    }
+
+    .flow {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 16px;
+      align-items: stretch;
+    }
+
+    .flow .step-card {
+      position: relative;
+    }
+
+    .flow .step-card:not(:last-child)::after {
+      content: "";
+      position: absolute;
+      right: -16px;
+      top: 50%;
+      width: 16px;
+      height: 2px;
+      background: var(--line);
+    }
+
+    .step-card .num {
+      width: 34px;
+      height: 34px;
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+
+    .split-note {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      margin-top: 24px;
+    }
+
+    .route-card {
+      border: 1px solid var(--line);
+      background: var(--paper-2);
+      padding: 24px;
+      border-radius: var(--radius);
+      min-height: 250px;
+      min-width: 0;
+    }
+
+    .route-card ol,
+    .route-card ul,
+    .copy-block ul,
+    .copy-block ol {
+      margin: 14px 0 0;
+      padding-left: 22px;
+    }
+
+    .route-card li,
+    .copy-block li {
+      margin: 6px 0;
+    }
+
+    .label-red {
+      color: var(--red);
+      font-weight: 800;
+      margin-top: 12px;
+      display: inline-block;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--line);
+      background: var(--paper-2);
+      border-radius: var(--radius);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 720px;
+    }
+
+    th,
+    td {
+      text-align: left;
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+    }
+
+    th {
+      color: var(--muted);
+      font-size: 14px;
+      background: rgba(239, 232, 218, 0.45);
+    }
+
+    td strong {
+      color: var(--blue);
+    }
+
+    tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .copy-block {
+      display: grid;
+      gap: 18px;
+      font-size: 17px;
+      min-width: 0;
+      overflow-wrap: anywhere;
+    }
+
+    .copy-block h3 {
+      margin-top: 10px;
+    }
+
+    .copy-block code {
+      background: var(--soft);
+      border: 1px solid var(--line);
+      padding: 1px 6px;
+      border-radius: 4px;
+      font-family: "SFMono-Regular", Consolas, monospace;
+      font-size: 0.92em;
+    }
+
+    .checklist {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .check {
+      border: 1px solid var(--line);
+      background: var(--paper-2);
+      padding: 14px 16px;
+      border-radius: var(--radius);
+      display: grid;
+      grid-template-columns: 22px 1fr;
+      gap: 10px;
+      align-items: start;
+    }
+
+    .check::before {
+      content: "";
+      width: 16px;
+      height: 16px;
+      border: 2px solid var(--blue);
+      margin-top: 4px;
+      display: inline-block;
+    }
+
+    .refs {
+      display: grid;
+      gap: 8px;
+      margin-top: 18px;
+    }
+
+    .refs a {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 20px;
+      padding: 14px 16px;
+      background: var(--paper-2);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      color: var(--ink);
+    }
+
+    .refs span {
+      color: var(--muted);
+      font-family: "Aptos", Arial, sans-serif;
+      font-size: 14px;
+    }
+
+    .footer {
+      padding: 36px 0 70px;
+      color: #8b8172;
+      font-size: 13px;
+    }
+
+    @media (max-width: 900px) {
+      .wrap {
+        width: min(1120px, calc(100vw - 32px));
+      }
+
+      .hero {
+        padding: 50px 0 34px;
+      }
+
+      h1 {
+        font-size: clamp(34px, 10vw, 42px);
+        word-break: break-all;
+      }
+
+      h2 {
+        font-size: clamp(28px, 8vw, 36px);
+      }
+
+      .nav {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 14px 0;
+      }
+
+      .nav-links {
+        justify-content: flex-start;
+      }
+
+      .meta-strip,
+      .grid-2,
+      .grid-3,
+      .grid-5,
+      .account-map,
+      .split-note,
+      .checklist {
+        grid-template-columns: 1fr;
+      }
+
+      .bridge {
+        padding: 6px 0;
+      }
+
+      .timeline,
+      .flow {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .timeline::before,
+      .flow .step-card::after {
+        display: none;
+      }
+
+      .t-step {
+        text-align: left;
+        display: grid;
+        grid-template-columns: 56px 1fr;
+        gap: 16px;
+      }
+
+      .t-step .num {
+        margin-bottom: 0;
+      }
+
+      .rule-row {
+        grid-template-columns: 44px 1fr;
+      }
+
+      .rule-row span {
+        grid-column: 2;
+      }
+
+      .section-head {
+        grid-template-columns: 1fr;
+      }
+
+      .plate,
+      .poster {
+        padding: 22px;
+      }
+
+      .account-box {
+        padding: 24px;
+      }
+
+      .account-box strong {
+        font-size: 25px;
+      }
+
+      .account-box small,
+      .lead,
+      .prep-item p,
+      .qa-card p,
+      .step-card p,
+      .route-card,
+      td,
+      th {
+        overflow-wrap: anywhere;
+        word-break: break-all;
+      }
+
+      .account-box b {
+        font-size: 21px;
+        overflow-wrap: normal;
+        word-break: normal;
+      }
+
+      .desktop-title {
+        display: none;
+      }
+
+      .mobile-title {
+        display: inline;
+      }
+
+      .refs a {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media print {
+      .topbar {
+        position: static;
+      }
+
+      body {
+        background: var(--paper);
+      }
+
+      .section,
+      .hero {
+        break-inside: avoid;
+        page-break-inside: avoid;
+      }
+
+      a {
+        border-bottom: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <nav class="wrap nav" aria-label="文档导航">
+      <strong>美区 App Store 账号教程</strong>
+      <div class="nav-links">
+        <a href="#prep">准备</a>
+        <a href="#main-flow">主流程</a>
+        <a href="#backup-flow">备用线路</a>
+        <a href="#gift-card">充值</a>
+        <a href="#trouble">排错</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <div class="kicker">图文版 HTML 教程</div>
+        <h1><span class="desktop-title">中国大陆用户注册美国区<br>App Store 账号教程</span><span class="mobile-title">中国大陆用户<br>注册美国区<br>App Store 账号教程</span></h1>
+        <p class="lead">单独注册一个美国区 Apple Account，只用于 App Store / Media &amp; Purchases。主 iCloud 不动，用美国区兑换码充值，降低对照片、通讯录、家庭共享和国内订阅的影响。</p>
+
+        <div class="meta-strip">
+          <div>
+            <span>核心结论</span>
+            <strong>不要把主 Apple 账号改区</strong>
+          </div>
+          <div>
+            <span>推荐路径</span>
+            <strong>新美区账号 + 礼品卡余额</strong>
+          </div>
+          <div>
+            <span>成功信号</span>
+            <strong>能下载免费美区 App，并能兑换 US 礼品卡</strong>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="boundary">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <h2>先把账号边界画清楚</h2>
+            <p>这不是“把现有账号改成美国区”的教程，而是“新增一个美区购买账号”的教程。</p>
+          </div>
+          <span class="tag">主 iCloud 保持不动</span>
+        </div>
+
+        <div class="plate">
+          <div class="account-map">
+            <div class="account-box">
+              <strong>主 iCloud 账号</strong>
+              <small>照片 / 通讯录 / 备份 / 家庭共享 / 国内订阅</small>
+              <b>保持登录，不退出</b>
+            </div>
+            <div class="bridge">只切换<br>媒体与购买项目</div>
+            <div class="account-box alt">
+              <strong>美区购买账号</strong>
+              <small>App Store 下载 / 更新 / 礼品卡余额 / App 内购</small>
+              <b>只登录 Media &amp; Purchases</b>
+            </div>
+          </div>
+
+          <div class="callout ok">目标是把 App Store 购买身份换成美区账号，而不是退出整机 iCloud。</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="prep">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <h2>准备清单</h2>
+            <p>成功率取决于网络、邮箱、手机号、地址、礼品卡和设备边界是否稳定，不是单个技巧。</p>
+          </div>
+          <span class="tag">注册前先备齐</span>
+        </div>
+
+        <div class="grid-3">
+          <article class="prep-item">
+            <h3><span class="dot"></span>美国网络环境</h3>
+            <p>注册、首次登录、兑换、首次下载时尽量保持同一条稳定美国线路，不要频繁切换节点、国家或网络。</p>
+          </article>
+          <article class="prep-item">
+            <h3><span class="dot"></span>注册邮箱</h3>
+            <p>最好用 Gmail；没有 Gmail 可用 QQ 邮箱等长期可控邮箱。必须能稳定收验证码和找回邮件。</p>
+          </article>
+          <article class="prep-item">
+            <h3><span class="dot"></span>手机号</h3>
+            <p>准备可长期接收验证码的手机号。中国大陆用户在创建 Apple Account 时，可能被要求提供 +86 号码验证。</p>
+          </article>
+          <article class="prep-item">
+            <h3><span class="dot"></span>美国地址</h3>
+            <p>准备街道、城市、州、ZIP、电话等账单地址信息。地址应可合法使用、长期记住。</p>
+          </article>
+          <article class="prep-item">
+            <h3><span class="dot"></span>美国区兑换码</h3>
+            <p>必须是美国区 Apple Gift Card / App Store &amp; iTunes Gift Card，其他地区卡不能充入美国区账号。</p>
+          </article>
+          <article class="prep-item">
+            <h3><span class="dot"></span>设备</h3>
+            <p>iPhone / iPad 最方便；Mac、Windows、网页也可以。首次流程用 iPhone 最直观。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="rules">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <h2>五条原则挡住大多数问题</h2>
+            <p>封控、账单、礼品卡和订阅问题，通常都绕不开下面五个基本规则。</p>
+          </div>
+          <span class="tag">先记规则，再动手</span>
+        </div>
+
+        <div class="rule-list">
+          <div class="rule-row">
+            <strong>不要用主账号改区</strong>
+            <span>主账号如果有余额、订阅、家庭共享、未完成订单，改区会很麻烦。</span>
+          </div>
+          <div class="rule-row">
+            <strong>兑换码必须和账号地区一致</strong>
+            <span>美国区账号只能兑换美国区礼品卡。法国、日本、中国大陆等其他地区卡不能跨区使用。</span>
+          </div>
+          <div class="rule-row">
+            <strong>付款方式优先选 None</strong>
+            <span>注册时如果可以选 <code>None</code>，就不要绑定银行卡，之后用 Apple Account Balance 支付。</span>
+          </div>
+          <div class="rule-row">
+            <strong>先小额测试，再大额充值</strong>
+            <span>新账号先用 5-10 美元测试下载、兑换和购买链路。</span>
+          </div>
+          <div class="rule-row">
+            <strong>不要购买来源不明兑换码</strong>
+            <span>低价黑卡、盗刷卡、异常来源兑换码有封号和余额冻结风险。</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="main-flow">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <h2>主流程：用 iPhone / iPad 注册</h2>
+            <p>每一步都有一个通过信号。最终能下载免费美区 App，才算 App Store 账号基本激活。</p>
+          </div>
+          <span class="tag">推荐路线</span>
+        </div>
+
+        <div class="plate">
+          <div class="timeline">
+            <div class="t-step">
+              <span class="num">1</span>
+              <div><strong>美国网络</strong><span>稳定美国 IP，注册全程不频繁切换。</span></div>
+            </div>
+            <div class="t-step">
+              <span class="num">2</span>
+              <div><strong>退出购买账号</strong><span>只退出 App Store / 媒体与购买项目，不退出主 iCloud。</span></div>
+            </div>
+            <div class="t-step">
+              <span class="num">3</span>
+              <div><strong>创建新账号</strong><span>App Store 头像 -> Create New Apple Account。</span></div>
+            </div>
+            <div class="t-step">
+              <span class="num">4</span>
+              <div><strong>验证信息</strong><span>邮箱验证码 + 手机验证码，生日建议成年人。</span></div>
+            </div>
+            <div class="t-step">
+              <span class="num">5</span>
+              <div><strong>付款 None</strong><span>国家为 United States，账单地址完整。</span></div>
+            </div>
+            <div class="t-step">
+              <span class="num">6</span>
+              <div><strong>免费 App 测试</strong><span>能下载免费 App，说明基本激活。</span></div>
+            </div>
+          </div>
+
+          <div class="copy-block">
+            <h3>关键步骤补充</h3>
+            <ol>
+              <li>在 App Store 右上角头像处创建新账号，地区选择 <code>United States</code>。</li>
+              <li>邮箱优先 Gmail；没有 Gmail 可用 QQ 邮箱等长期可控邮箱。</li>
+              <li>付款方式页面优先选择 <code>None</code>，并补全美国 Billing Address。</li>
+              <li>如果看不到 <code>Create New Apple Account</code>，先确认 App Store / 媒体与购买项目已退出登录；仍看不到时，走网页备用线路。</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="backup-flow">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <h2>备用线路：网页先建 Apple Account</h2>
+            <p>网页登录可能更容易先把账号建出来，但它不是完整的美区 App Store 激活。</p>
+          </div>
+          <span class="tag">备用路线</span>
+        </div>
+
+        <div class="split-note">
+          <article class="route-card">
+            <h3>第一段：网页创建账号</h3>
+            <ol>
+              <li>切换到稳定美国网络环境。</li>
+              <li>打开 <code>https://account.apple.com/</code>。</li>
+              <li>点击 <code>Create Your Apple Account</code>。</li>
+              <li>地区选择 <code>United States</code>。</li>
+              <li>完成邮箱验证码和手机验证码。</li>
+            </ol>
+          </article>
+          <article class="route-card">
+            <h3>第二段：回 App Store 激活</h3>
+            <ol>
+              <li>保持主 iCloud 不动。</li>
+              <li>进入 <code>媒体与购买项目</code>。</li>
+              <li>登录网页创建的新 Apple Account。</li>
+              <li>完成 Review / Terms / None / Billing Address。</li>
+              <li>下载一个免费 App 测试。</li>
+            </ol>
+            <span class="label-red">网页 iCloud web-only 不等于完整 App Store 账号。</span>
+          </article>
+        </div>
+
+        <div class="callout danger">最终是否可用，仍以 App Store 登录、补全账单信息、下载免费 App、兑换美国区礼品卡是否成功为准。</div>
+      </div>
+    </section>
+
+    <section class="section" id="gift-card">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <h2>兑换美国区 Apple Gift Card</h2>
+            <p>充值前先确认卡区；首次建议小额测试，确认余额显示美元后再继续。</p>
+          </div>
+          <span class="tag">美区卡只进美区账号</span>
+        </div>
+
+        <div class="plate">
+          <div class="flow">
+            <article class="step-card">
+              <span class="num">1</span>
+              <h3>买 US 卡</h3>
+              <p>确认是美国区 Apple Gift Card / App Store &amp; iTunes Gift Card。</p>
+            </article>
+            <article class="step-card">
+              <span class="num">2</span>
+              <h3>App Store 头像</h3>
+              <p>进入 <code>Redeem Gift Card or Code</code>。</p>
+            </article>
+            <article class="step-card">
+              <span class="num">3</span>
+              <h3>输入兑换码</h3>
+              <p>建议手动输入，避免复制空格或换行。</p>
+            </article>
+            <article class="step-card">
+              <span class="num">4</span>
+              <h3>检查余额</h3>
+              <p>头像页面显示美元金额，说明充值成功。</p>
+            </article>
+            <article class="step-card">
+              <span class="num">5</span>
+              <h3>小额测试</h3>
+              <p>用低价 App、订阅试用或应用内购买测试链路。</p>
+            </article>
+          </div>
+
+          <div class="callout danger">港区、日区、中国区或其他地区礼品卡，不能兑换进美国区账号。</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="daily">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <h2>长期使用：双账号模式</h2>
+            <p>iCloud 仍然是主账号；美区账号只负责 App Store 下载、更新、余额和内购。</p>
+          </div>
+          <span class="tag">日常维护</span>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>场景</th>
+                <th>使用账号</th>
+                <th>说明</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>iCloud、照片、通讯录、备份</td>
+                <td><strong>原来的中国区主账号</strong></td>
+                <td>保持登录，不要为了 App Store 改区而影响主数据。</td>
+              </tr>
+              <tr>
+                <td>App Store 下载美区应用</td>
+                <td><strong>新注册的美国区账号</strong></td>
+                <td>只用于下载、更新、礼品卡余额和内购。</td>
+              </tr>
+              <tr>
+                <td>国内 App 更新</td>
+                <td><strong>切回中国区 App Store 账号</strong></td>
+                <td>不同地区下载的 App，通常要用原下载地区账号更新。</td>
+              </tr>
+              <tr>
+                <td>美区 App 更新 / 续费</td>
+                <td><strong>切回美区购买账号</strong></td>
+                <td>续费日前检查 Apple Account Balance。</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="callout">切换路径：设置 -> Apple 账号 -> 媒体与购买项目 -> 退出 -> 登录另一个购买账号。</div>
+      </div>
+    </section>
+
+    <section class="section" id="trouble">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <h2>常见问题排错矩阵</h2>
+            <p>遇到失败时先判断卡在哪一层，不要连续高频重试。</p>
+          </div>
+          <span class="tag">先定位，再处理</span>
+        </div>
+
+        <div class="grid-3">
+          <article class="qa-card">
+            <h3><span class="dot"></span>入口问题</h3>
+            <p>看不到 <code>Create New Apple Account</code> 或提示无法建号。先退出 App Store 账号，换稳定美国线路，必要时走网页备用线路。</p>
+          </article>
+          <article class="qa-card">
+            <h3><span class="dot"></span>付款问题</h3>
+            <p>没有 <code>None</code>、Verification Required 或账单信息卡住。检查 United States、Billing Address、免费 App 触发 Review。</p>
+          </article>
+          <article class="qa-card">
+            <h3><span class="dot"></span>地区问题</h3>
+            <p>礼品卡无法兑换或搜不到目标 App。确认账号是美国区、卡是 US 区、App 是否支持当前地区和设备。</p>
+          </article>
+        </div>
+
+        <div class="callout danger">如果提示联系 iTunes Support / Apple Support，不要反复兑换或购买，优先联系官方支持并保留凭证。</div>
+      </div>
+    </section>
+
+    <section class="section" id="safe">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <h2>安全建议与成功检查</h2>
+            <p>账号、邮箱、手机号、地址和兑换码都要自己可控，尤其不要把密码交给代充或代登。</p>
+          </div>
+          <span class="tag">最后验收</span>
+        </div>
+
+        <div class="grid-2">
+          <div class="poster">
+            <h3>安全底线</h3>
+            <div class="copy-block">
+              <ul>
+                <li>新美区账号只用于 App Store，不承载重要 iCloud 数据。</li>
+                <li>开启双重认证，保存好注册邮箱、密码和恢复方式。</li>
+                <li>不要把兑换码发给陌生人，不接受代登、代充。</li>
+                <li>不要一次性充值太大金额，避免频繁跨国家、跨设备登录。</li>
+              </ul>
+            </div>
+          </div>
+          <div class="poster">
+            <h3>最小成功检查表</h3>
+            <div class="checklist">
+              <div class="check">美国网络环境稳定</div>
+              <div class="check">邮箱可收验证码</div>
+              <div class="check">App Store 已退出旧购买账号</div>
+              <div class="check">新账号地区是 United States</div>
+              <div class="check">付款方式选择 None</div>
+              <div class="check">美国账单地址完整</div>
+              <div class="check">能下载免费美区 App</div>
+              <div class="check">能兑换美国区礼品卡</div>
+              <div class="check">余额显示为美元</div>
+              <div class="check">完成一次小额测试</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="refs">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <h2>官方参考</h2>
+            <p>页面入口和风控可能变化；实操以当前 App Store 与 Apple Support 显示为准。</p>
+          </div>
+          <span class="tag">Apple Support</span>
+        </div>
+
+        <div class="refs">
+          <a href="https://support.apple.com/en-us/108647"><strong>How to create a new Apple Account</strong><span>support.apple.com/en-us/108647</span></a>
+          <a href="https://support.apple.com/en-us/102447"><strong>Web-only access to iCloud</strong><span>support.apple.com/en-us/102447</span></a>
+          <a href="https://support.apple.com/en-us/111741"><strong>Payment methods that you can use with your Apple Account</strong><span>support.apple.com/en-us/111741</span></a>
+          <a href="https://support.apple.com/en-us/118297"><strong>Add money to your Apple Account balance</strong><span>support.apple.com/en-us/118297</span></a>
+          <a href="https://support.apple.com/en-us/108285"><strong>If you can't redeem your Apple Gift Card</strong><span>support.apple.com/en-us/108285</span></a>
+          <a href="https://support.apple.com/en-us/118291"><strong>Remove a payment method from your Apple Account</strong><span>support.apple.com/en-us/118291</span></a>
+          <a href="https://support.apple.com/en-us/118245"><strong>What you can buy with Apple Account balance</strong><span>support.apple.com/en-us/118245</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <p>作者：ymzhang。Source: 40-Resources/教程/账号申请类/中国大陆用户注册美国区App Store账号教程.md。HTML generated on 2026-05-22.</p>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>账号申请与订阅教程</title>
+  <meta name="description" content="面向中国大陆用户的账号注册、App Store 美区账号、Apple 礼品卡充值和 ChatGPT Plus 订阅经验整理。">
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #18202c;
+      --muted: #5b6676;
+      --line: #d7dde7;
+      --panel: #ffffff;
+      --page: #f5f7fb;
+      --accent: #0b6bcb;
+      --accent-soft: #e8f2ff;
+      --warn: #7a4b00;
+      --warn-bg: #fff5df;
+      --ok: #176a3a;
+      --ok-bg: #e9f7ef;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans SC", "Microsoft YaHei", sans-serif;
+      background: var(--page);
+      color: var(--ink);
+      line-height: 1.65;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .wrap {
+      max-width: 1060px;
+      margin: 0 auto;
+      padding: 40px 20px 56px;
+    }
+
+    header {
+      padding: 8px 0 28px;
+    }
+
+    .kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 14px;
+      padding: 5px 10px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: #fff;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 40px;
+      line-height: 1.18;
+      letter-spacing: 0;
+    }
+
+    .lead {
+      max-width: 780px;
+      margin: 14px 0 0;
+      color: var(--muted);
+      font-size: 17px;
+    }
+
+    .notice {
+      margin: 8px 0 28px;
+      padding: 14px 16px;
+      border: 1px solid #f1d797;
+      border-radius: 8px;
+      background: var(--warn-bg);
+      color: var(--warn);
+      font-size: 14px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .card {
+      display: flex;
+      min-height: 182px;
+      padding: 20px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .card h2 {
+      margin: 0 0 8px;
+      font-size: 21px;
+      line-height: 1.35;
+      letter-spacing: 0;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 18px;
+    }
+
+    .link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 34px;
+      padding: 5px 10px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .link.primary {
+      border-color: #b8d8fb;
+      background: var(--accent-soft);
+    }
+
+    .section {
+      margin-top: 26px;
+      padding: 18px 20px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+    }
+
+    .section h2 {
+      margin: 0 0 8px;
+      font-size: 20px;
+      letter-spacing: 0;
+    }
+
+    .section ul {
+      margin: 8px 0 0;
+      padding-left: 22px;
+      color: var(--muted);
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      margin-left: 8px;
+      padding: 1px 8px;
+      border-radius: 999px;
+      background: var(--ok-bg);
+      color: var(--ok);
+      font-size: 12px;
+      font-weight: 600;
+      vertical-align: middle;
+    }
+
+    footer {
+      margin-top: 30px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    @media (max-width: 760px) {
+      .wrap {
+        padding: 28px 14px 42px;
+      }
+
+      h1 {
+        font-size: 30px;
+      }
+
+      .lead {
+        font-size: 16px;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <header>
+      <div class="kicker">个人经验整理 · 账号申请类教程</div>
+      <h1>账号申请与订阅教程</h1>
+      <p class="lead">这些文档整理自实际使用经验，覆盖 ChatGPT、Gmail、美区 Apple Account、Apple 礼品卡充值和 App Store 内购订阅。内容适合自用参考，也适合分享给需要自己掌控账号和订阅路径的朋友。</p>
+    </header>
+
+    <div class="notice">
+      规则、入口、价格、地区支持和风控策略可能随平台调整而变化。请以 Apple、Google、OpenAI 等官方页面的当前提示为准；不建议买号、接码、代登、代充或共享账号。
+    </div>
+
+    <section class="grid" aria-label="教程列表">
+      <article class="card">
+        <div>
+          <h2>ChatGPT 账号注册教程</h2>
+          <p>注册方式、手机号验证、OAuth 授权、登录方式和常见问题处理。</p>
+        </div>
+        <div class="links">
+          <a class="link primary" href="ChatGPT账号注册教程.html">网页阅读</a>
+          <a class="link" href="ChatGPT账号注册教程.md">Markdown</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <div>
+          <h2>Gmail 邮箱账号注册教程</h2>
+          <p>注册准备、用户名规则、手机号验证、恢复方式和账号安全设置。</p>
+        </div>
+        <div class="links">
+          <a class="link primary" href="Gmail邮箱账号注册教程.html">网页阅读</a>
+          <a class="link" href="Gmail邮箱账号注册教程.md">Markdown</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <div>
+          <h2>中国大陆用户注册美国区 App Store 账号教程</h2>
+          <p>美区账号创建、邮箱和手机号验证、商店资料、付款方式和排错。</p>
+        </div>
+        <div class="links">
+          <a class="link primary" href="中国大陆用户注册美国区App Store账号教程.html">网页阅读</a>
+          <a class="link" href="中国大陆用户注册美国区App Store账号教程.md">Markdown</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <div>
+          <h2>美区 Apple 账户充值与 App 内购订阅教程 <span class="badge">含截图</span></h2>
+          <p>Apple Gift Card 购买渠道、充值、续费、余额支付和风险边界。</p>
+        </div>
+        <div class="links">
+          <a class="link primary" href="美区Apple账户充值与App内购订阅教程.html">网页阅读</a>
+          <a class="link" href="美区Apple账户充值与App内购订阅教程.md">Markdown</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <div>
+          <h2>用美区 Apple 余额订阅 ChatGPT Plus 教程</h2>
+          <p>通过 iOS App Store 内购订阅 ChatGPT Plus 的检查、付款和管理路径。</p>
+        </div>
+        <div class="links">
+          <a class="link primary" href="用美区Apple余额订阅ChatGPT Plus教程.html">网页阅读</a>
+          <a class="link" href="用美区Apple余额订阅ChatGPT Plus教程.md">Markdown</a>
+        </div>
+      </article>
+    </section>
+
+    <section class="section">
+      <h2>发布说明</h2>
+      <ul>
+        <li>最后整理日期：2026-06-25。</li>
+        <li>内容为个人经验总结，不代表 Apple、Google、OpenAI 或其他平台的官方说明。</li>
+        <li>涉及账号、订阅、礼品卡、支付和地区服务时，请自己核对平台当前规则。</li>
+      </ul>
+    </section>
+
+    <footer>
+      © ymzhang. 个人学习和经验分享用途。
+    </footer>
+  </main>
+</body>
+</html>

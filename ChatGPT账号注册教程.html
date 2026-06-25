@@ -1,0 +1,889 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ChatGPT 账号注册教程</title>
+  <meta name="author" content="ymzhang">
+  <style>
+    :root {
+      --paper: #f8f5ef;
+      --paper-2: #fffdf8;
+      --ink: #15171c;
+      --muted: #4b5563;
+      --soft: #efe8da;
+      --line: #d9d1c2;
+      --blue: #2563eb;
+      --teal: #0f766e;
+      --amber: #b45309;
+      --red: #dc2626;
+      --green: #15803d;
+      --panel: #ffffff;
+      --shadow: 0 18px 48px rgba(21, 23, 28, 0.08);
+      --radius: 8px;
+      font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", "Helvetica Neue", Arial, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--paper);
+      overflow-x: hidden;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        linear-gradient(90deg, rgba(37, 99, 235, 0.06) 1px, transparent 1px),
+        linear-gradient(180deg, rgba(37, 99, 235, 0.04) 1px, transparent 1px),
+        var(--paper);
+      background-size: 80px 80px;
+      line-height: 1.72;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: var(--blue);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(37, 99, 235, 0.25);
+    }
+
+    a:hover { border-bottom-color: var(--blue); }
+
+    code {
+      background: var(--soft);
+      border: 1px solid var(--line);
+      padding: 1px 6px;
+      border-radius: 4px;
+      font-family: "SFMono-Regular", Consolas, monospace;
+      font-size: 0.92em;
+    }
+
+    .wrap {
+      width: min(1120px, calc(100vw - 40px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(14px);
+      background: rgba(248, 245, 239, 0.9);
+      border-bottom: 1px solid rgba(217, 209, 194, 0.75);
+    }
+
+    .nav {
+      min-height: 62px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .nav strong {
+      color: var(--ink);
+      font-size: 16px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      border: 0;
+    }
+
+    .hero { padding: 76px 0 44px; }
+
+    .kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--muted);
+      font-weight: 700;
+      letter-spacing: 0;
+      margin-bottom: 22px;
+    }
+
+    .kicker::before {
+      content: "";
+      width: 30px;
+      height: 4px;
+      background: var(--blue);
+      display: inline-block;
+    }
+
+    h1, h2, h3 {
+      letter-spacing: 0;
+      line-height: 1.18;
+      margin: 0;
+    }
+
+    h1 {
+      font-size: clamp(40px, 7vw, 76px);
+      max-width: 1000px;
+      margin-bottom: 22px;
+      overflow-wrap: anywhere;
+    }
+
+    h2 {
+      font-size: clamp(28px, 4.8vw, 48px);
+      margin-bottom: 14px;
+    }
+
+    h3 {
+      font-size: 22px;
+      margin-bottom: 10px;
+    }
+
+    p { margin: 0; }
+
+    .lead {
+      max-width: 860px;
+      font-size: clamp(18px, 2.6vw, 24px);
+      color: var(--muted);
+      margin-bottom: 32px;
+      overflow-wrap: anywhere;
+    }
+
+    .mobile-title { display: none; }
+
+    .meta-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--line);
+      border: 1px solid var(--line);
+      margin-top: 32px;
+    }
+
+    .meta-strip div {
+      background: var(--paper-2);
+      padding: 18px 20px;
+      min-height: 96px;
+    }
+
+    .meta-strip span {
+      display: block;
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 4px;
+    }
+
+    .meta-strip strong { font-size: 18px; }
+
+    .section { padding: 42px 0; }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: end;
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+
+    .section-head p {
+      color: var(--muted);
+      max-width: 780px;
+      font-size: 18px;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      min-height: 30px;
+      padding: 4px 12px;
+      border: 1px solid var(--line);
+      background: var(--paper-2);
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .plate {
+      background: rgba(255, 253, 248, 0.96);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      padding: clamp(22px, 4vw, 42px);
+      border-radius: var(--radius);
+    }
+
+    .poster {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: clamp(20px, 3vw, 34px);
+      min-width: 0;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .callout {
+      border-left: 6px solid var(--blue);
+      background: #eef4ff;
+      padding: 18px 20px;
+      margin-top: 20px;
+      color: #1f2937;
+      font-weight: 700;
+      overflow-wrap: anywhere;
+    }
+
+    .danger {
+      border-left-color: var(--red);
+      background: #fff1f1;
+    }
+
+    .ok {
+      border-left-color: var(--teal);
+      background: #edfdfa;
+    }
+
+    .amber {
+      border-left-color: var(--amber);
+      background: #fff7e8;
+    }
+
+    .card,
+    .qa-card,
+    .step-card {
+      background: var(--paper-2);
+      border: 1px solid var(--line);
+      padding: 20px;
+      border-radius: var(--radius);
+      min-height: 150px;
+      min-width: 0;
+      overflow-wrap: anywhere;
+    }
+
+    .card .dot,
+    .qa-card .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      display: inline-block;
+      margin-right: 8px;
+      background: var(--blue);
+      flex: none;
+    }
+
+    .card:nth-child(2) .dot,
+    .card:nth-child(6) .dot,
+    .qa-card:nth-child(2) .dot { background: var(--teal); }
+
+    .card:nth-child(3) .dot,
+    .card:nth-child(5) .dot,
+    .qa-card:nth-child(3) .dot { background: var(--amber); }
+
+    .card h3,
+    .qa-card h3 {
+      display: flex;
+      align-items: center;
+      margin-bottom: 12px;
+      overflow-wrap: anywhere;
+    }
+
+    .card p,
+    .qa-card p,
+    .step-card p {
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .rule-list {
+      counter-reset: rule;
+      display: grid;
+      gap: 0;
+      border: 1px solid var(--line);
+      background: var(--line);
+    }
+
+    .rule-row {
+      counter-increment: rule;
+      display: grid;
+      grid-template-columns: 70px 260px 1fr;
+      gap: 20px;
+      align-items: center;
+      background: var(--paper-2);
+      padding: 18px 22px;
+      min-width: 0;
+    }
+
+    .rule-row + .rule-row { border-top: 1px solid var(--line); }
+
+    .rule-row::before {
+      content: counter(rule, decimal-leading-zero);
+      color: var(--blue);
+      font-weight: 800;
+      font-family: "Aptos", Arial, sans-serif;
+    }
+
+    .rule-row:nth-child(2)::before,
+    .rule-row:nth-child(5)::before { color: var(--red); }
+
+    .rule-row strong {
+      font-size: 20px;
+      overflow-wrap: anywhere;
+    }
+
+    .rule-row span {
+      color: var(--muted);
+      overflow-wrap: anywhere;
+    }
+
+    .timeline {
+      display: grid;
+      grid-template-columns: repeat(var(--steps, 5), 1fr);
+      gap: 0;
+      margin: 28px 0;
+      position: relative;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 7%;
+      right: 7%;
+      top: 26px;
+      height: 2px;
+      background: var(--line);
+    }
+
+    .t-step {
+      position: relative;
+      text-align: center;
+      padding: 0 10px;
+      min-width: 0;
+    }
+
+    .num {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--blue);
+      color: #fff;
+      font-weight: 800;
+      font-family: "Aptos", Arial, sans-serif;
+      position: relative;
+      z-index: 2;
+      margin-bottom: 16px;
+      flex: none;
+    }
+
+    .t-step:nth-child(4) .num,
+    .step-card:nth-child(4) .num { background: var(--amber); }
+
+    .t-step:nth-child(5) .num,
+    .step-card:nth-child(5) .num { background: var(--teal); }
+
+    .t-step strong {
+      display: block;
+      font-size: 18px;
+      margin-bottom: 8px;
+      overflow-wrap: anywhere;
+    }
+
+    .t-step span {
+      display: block;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.45;
+      overflow-wrap: anywhere;
+    }
+
+    .flow {
+      display: grid;
+      grid-template-columns: repeat(var(--flow-cols, 5), 1fr);
+      gap: 16px;
+      align-items: stretch;
+    }
+
+    .flow .step-card { position: relative; }
+
+    .flow .step-card:not(:last-child)::after {
+      content: "";
+      position: absolute;
+      right: -16px;
+      top: 50%;
+      width: 16px;
+      height: 2px;
+      background: var(--line);
+    }
+
+    .step-card .num {
+      width: 34px;
+      height: 34px;
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+
+    .copy-block {
+      display: grid;
+      gap: 18px;
+      font-size: 17px;
+      min-width: 0;
+      overflow-wrap: anywhere;
+    }
+
+    .copy-block h3 { margin-top: 10px; }
+
+    .copy-block ul,
+    .copy-block ol {
+      margin: 12px 0 0;
+      padding-left: 22px;
+    }
+
+    .copy-block li { margin: 6px 0; }
+
+    .split-note {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      margin-top: 24px;
+    }
+
+    .route-card {
+      border: 1px solid var(--line);
+      background: var(--paper-2);
+      padding: 24px;
+      border-radius: var(--radius);
+      min-height: 220px;
+      min-width: 0;
+      overflow-wrap: anywhere;
+    }
+
+    .route-card ol,
+    .route-card ul {
+      margin: 14px 0 0;
+      padding-left: 22px;
+    }
+
+    .route-card li { margin: 6px 0; }
+
+    .label-red {
+      color: var(--red);
+      font-weight: 800;
+      margin-top: 12px;
+      display: inline-block;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--line);
+      background: var(--paper-2);
+      border-radius: var(--radius);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 720px;
+    }
+
+    th, td {
+      text-align: left;
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+    }
+
+    th {
+      color: var(--muted);
+      font-size: 14px;
+      background: rgba(239, 232, 218, 0.45);
+    }
+
+    td strong { color: var(--blue); }
+    tr:last-child td { border-bottom: 0; }
+
+    .checklist {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .check {
+      border: 1px solid var(--line);
+      background: var(--paper-2);
+      padding: 14px 16px;
+      border-radius: var(--radius);
+      display: grid;
+      grid-template-columns: 22px 1fr;
+      gap: 10px;
+      align-items: start;
+      overflow-wrap: anywhere;
+    }
+
+    .check::before {
+      content: "";
+      width: 16px;
+      height: 16px;
+      border: 2px solid var(--blue);
+      margin-top: 4px;
+      display: inline-block;
+    }
+
+    .refs {
+      display: grid;
+      gap: 8px;
+      margin-top: 18px;
+    }
+
+    .refs a {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 20px;
+      padding: 14px 16px;
+      background: var(--paper-2);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      color: var(--ink);
+      overflow-wrap: anywhere;
+    }
+
+    .refs span {
+      color: var(--muted);
+      font-family: "Aptos", Arial, sans-serif;
+      font-size: 14px;
+    }
+
+    .footer {
+      color: var(--muted);
+      padding: 34px 0 56px;
+      font-size: 14px;
+    }
+
+    @media (max-width: 900px) {
+      .wrap { width: min(100vw - 32px, 720px); }
+      .nav {
+        min-height: auto;
+        padding: 14px 0;
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .nav-links {
+        width: 100%;
+        justify-content: flex-start;
+        gap: 10px 14px;
+      }
+      .hero { padding: 48px 0 28px; }
+      h1 { font-size: clamp(34px, 10vw, 42px); }
+      h2 { font-size: clamp(27px, 8vw, 36px); }
+      h3 { font-size: 20px; }
+      .desktop-title { display: none; }
+      .mobile-title { display: inline; }
+      .meta-strip,
+      .grid-2,
+      .grid-3,
+      .grid-4,
+      .split-note {
+        grid-template-columns: 1fr;
+      }
+      .meta-strip div { min-height: auto; }
+      .section { padding: 26px 0; }
+      .section-head {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        margin-bottom: 18px;
+      }
+      .plate,
+      .poster { padding: 22px; }
+      .rule-row {
+        grid-template-columns: 44px 1fr;
+        gap: 10px 14px;
+        padding: 16px;
+      }
+      .rule-row span { grid-column: 2; }
+      .timeline,
+      .flow {
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+      .timeline::before,
+      .flow .step-card:not(:last-child)::after { display: none; }
+      .t-step {
+        display: grid;
+        grid-template-columns: 52px 1fr;
+        text-align: left;
+        gap: 14px;
+        padding: 14px 0;
+        border-bottom: 1px solid var(--line);
+      }
+      .t-step:last-child { border-bottom: 0; }
+      .num { margin-bottom: 0; }
+      .checklist { grid-template-columns: 1fr; }
+      table { min-width: 640px; }
+      th, td { padding: 13px 14px; }
+      .refs a { grid-template-columns: 1fr; gap: 4px; }
+      .refs span { font-size: 12px; }
+      .card, .qa-card, .step-card { min-height: auto; }
+    }
+
+    @media print {
+      html { background: #fff; }
+      body {
+        background: #fff;
+        color: #000;
+      }
+      .topbar { position: static; }
+      .nav-links { display: none; }
+      .section { break-inside: avoid; }
+      .plate { box-shadow: none; }
+    }
+</style>
+</head>
+<body>
+  <header class="topbar">
+    <nav class="wrap nav" aria-label="页面导航">
+      <strong>ChatGPT 注册</strong>
+      <div class="nav-links">
+        <a href="#guardrails">红线</a><a href="#prepare">准备</a><a href="#routes">路线</a><a href="#oauth">OAuth</a><a href="#fix">排错</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <div class="kicker">账号注册图文版</div>
+        <h1><span class="desktop-title">ChatGPT 账号注册教程</span><span class="mobile-title">ChatGPT<br>账号注册教程</span></h1>
+        <p class="lead">账号先稳，订阅才稳。面向中国大陆用户，用长期可控邮箱或手机号路径注册 ChatGPT，避免成品号、共享号、接码号。</p>
+        <div class="meta-strip">
+        <div><span>核心原则</span><strong>不买号，不共享号，不接码</strong></div>
+        <div><span>日常路径</span><strong>邮箱 / Google / Apple / Microsoft 登录</strong></div>
+        <div><span>Agent 路径</span><strong>Giffgaff 用户优先手机号注册</strong></div>
+      </div>
+      </div>
+    </section>
+
+    <section id="guardrails" class="section">
+    <div class="wrap">
+      <div class="plate">
+        <div class="section-head">
+          <div>
+            <h2>账号来源红线</h2>
+            <p>ChatGPT 账号最重要的是长期可控。便宜账号通常把风险转移到你身上。</p>
+          </div>
+          <span class="tag">Account Rules</span>
+        </div>
+        <div class="rule-list">
+        <div class="rule-row">
+          <strong>不买成品号</strong>
+          <span>来路不明、随时找回、容易触发风控。</span>
+        </div>
+        <div class="rule-row">
+          <strong>不用共享号</strong>
+          <span>多人登录会污染行为、付款和安全记录。</span>
+        </div>
+        <div class="rule-row">
+          <strong>不用接码号</strong>
+          <span>后续 OAuth、恢复账号或安全验证时往往无法再验证。</span>
+        </div>
+        <div class="rule-row">
+          <strong>不用代充号</strong>
+          <span>对方可能掌握登录、付款或恢复链路。</span>
+        </div>
+        <div class="rule-row">
+          <strong>不碰永久会员</strong>
+          <span>所谓永久、低价、团队车通常不是稳定个人订阅。</span>
+        </div>
+      </div>
+      </div>
+    </div>
+  </section>
+
+<section id="prepare" class="section">
+    <div class="wrap">
+      <div class="plate">
+        <div class="section-head">
+          <div>
+            <h2>注册前准备清单</h2>
+            <p>先准备邮箱、网络、密码和可恢复的验证方式，再开始注册。</p>
+          </div>
+          <span class="tag">Before Sign Up</span>
+        </div>
+        <div class="grid-3">
+        <article class="card">
+          <h3><span class="dot"></span>网络和地区</h3>
+          <p>使用 OpenAI 支持国家或地区的稳定网络环境，避免频繁切换节点。</p>
+        </article>
+        <article class="card">
+          <h3><span class="dot"></span>邮箱</h3>
+          <p>优先 Gmail；没有 Gmail 时，可用 QQ 邮箱等长期可控邮箱。</p>
+        </article>
+        <article class="card">
+          <h3><span class="dot"></span>登录方式</h3>
+          <p>日常使用可选邮箱、Google、Apple 或 Microsoft 登录；要给 Codex 或第三方 Agent 做 OAuth 时，手机号验证要提前规划。</p>
+        </article>
+        <article class="card">
+          <h3><span class="dot"></span>密码</h3>
+          <p>用密码管理器生成强密码，并保存注册方式，避免下次选错登录入口。</p>
+        </article>
+        <article class="card">
+          <h3><span class="dot"></span>手机号</h3>
+          <p>网页版和 App 日常使用通常不再默认要求手机号，但安全、风控、OAuth 授权时仍可能弹出电话验证。</p>
+        </article>
+        <article class="card">
+          <h3><span class="dot"></span>设备</h3>
+          <p>建议先用电脑浏览器完成注册和安全设置，再登录手机 App。</p>
+        </article>
+      </div>
+      </div>
+    </div>
+  </section>
+
+<section id="routes" class="section">
+    <div class="wrap">
+      <div class="plate">
+        <div class="section-head">
+          <div>
+            <h2>两条注册路线</h2>
+            <p>普通日常用户走邮箱或社交登录；使用 Giffgaff 号码并且要服务 Agent/OAuth 的用户，优先走手机号注册。</p>
+          </div>
+          <span class="tag">Two Routes</span>
+        </div>
+        <div class="split-note">
+      <article class="route-card">
+        <h3>路线 A：邮箱或社交登录</h3>
+        <ol>
+            <li>打开 <a href="https://chatgpt.com/"><strong>chatgpt.com</strong><span>chatgpt.com/</span></a>。</li>
+            <li>点击 Sign up。</li>
+            <li>选择邮箱注册，或使用 Google / Microsoft / Apple 继续。</li>
+            <li>完成邮箱验证。</li>
+            <li>进入 Settings，补齐安全设置和恢复方式。</li>
+          </ol>
+          <span class="label-red">适合：只在网页版和官方 App 日常使用。</span>
+      </article>
+      <article class="route-card">
+        <h3>路线 B：Giffgaff 手机号注册</h3>
+        <ol>
+            <li>准备可长期接收短信的英国 Giffgaff 号码。</li>
+            <li>在注册入口选择手机号方式，而不是先用邮箱注册。</li>
+            <li>输入英国号码，完成短信验证码。</li>
+            <li>注册完成后，再进入账号设置绑定邮箱。</li>
+          </ol>
+          <span class="label-red">重点：已用邮箱注册的 ChatGPT 账号，实操中无法顺利补绑 Giffgaff 号码。</span>
+      </article>
+    </div><div class="callout amber">手机号注册入口和覆盖国家可能随产品阶段变化。使用 Giffgaff 时，以当前 ChatGPT 注册页面实际可选入口为准。</div>
+      </div>
+    </div>
+  </section>
+
+<section id="oauth" class="section">
+    <div class="wrap">
+      <div class="plate">
+        <div class="section-head">
+          <div>
+            <h2>Codex / 第三方 Agent 的特殊验证</h2>
+            <p>普通登录可用，不代表 OAuth 授权已经满足全部安全验证。</p>
+          </div>
+          <span class="tag">Agent OAuth</span>
+        </div>
+        <div class="grid-2">
+        <div class="poster copy-block">
+          <h3>核心发现</h3>
+          <p>ChatGPT 注册、网页版登录和 App 登录日常使用通常不再要求手机号码验证；但是账号通过 OAuth 授权给 Codex 或第三方 Agent 使用时，仍可能弹出电话号码验证，并且无法跳过。</p>
+          <p>如果没有长期可控手机号，这一步会直接卡住。</p>
+        </div>
+        <div class="poster copy-block">
+          <h3>Giffgaff 处理方式</h3>
+          <p>如果使用英国 Giffgaff 号码，不要先用邮箱注册再补绑手机号。实操结果是：已经完成注册的 ChatGPT 账号无法正常添加该电话绑定。</p>
+          <p>建议在注册时直接使用手机号注册，完成后再绑定邮箱。</p>
+        </div>
+      </div>
+      <div class="callout danger">要给 Codex、自动化工具或第三方 Agent 授权的账号，建议一开始就按“手机号注册 -> 再绑定邮箱”的路线设计。</div>
+      </div>
+    </div>
+  </section>
+
+<section id="security" class="section">
+    <div class="wrap">
+      <div class="plate">
+        <div class="section-head">
+          <div>
+            <h2>注册后安全设置</h2>
+            <p>账号能登录只是第一步，恢复链路和多因素验证才决定后续是否稳。</p>
+          </div>
+          <span class="tag">Security</span>
+        </div>
+        <div class="checklist">
+        <div class="check"><span>保存登录邮箱、登录方式和强密码。</span></div>
+        <div class="check"><span>确认可以收到 OpenAI 账号邮件和安全邮件。</span></div>
+        <div class="check"><span>开启多因素验证 MFA。</span></div>
+        <div class="check"><span>添加 Passkey 或其他更安全的登录方式。</span></div>
+        <div class="check"><span>不要把账号交给代充、代登或共享服务。</span></div>
+        <div class="check"><span>订阅前确认账号属于自己长期可恢复。</span></div>
+      </div>
+      </div>
+    </div>
+  </section>
+
+<section id="fix" class="section">
+    <div class="wrap">
+      <div class="plate">
+        <div class="section-head">
+          <div>
+            <h2>常见问题排查</h2>
+            <p>多数登录问题来自入口选错、邮箱不可控、网络异常或验证链路缺失。</p>
+          </div>
+          <span class="tag">Troubleshooting</span>
+        </div>
+        <div class="table-wrap"><table>
+        <thead><tr><th>问题</th><th>原因</th><th>处理</th></tr></thead>
+        <tbody><tr><td><strong>Wrong authentication method</strong></td><td>曾用 Google / Apple / Microsoft 登录，却改用邮箱密码入口。</td><td>回到最初的登录方式。</td></tr><tr><td><strong>Email already exists</strong></td><td>邮箱已注册过 ChatGPT 或 OpenAI 账号。</td><td>直接登录，或用忘记密码流程恢复。</td></tr><tr><td><strong>收不到验证邮件</strong></td><td>邮箱拦截、延迟或地址不可控。</td><td>查垃圾箱，换 Gmail 或长期可控邮箱。</td></tr><tr><td><strong>OAuth 卡电话验证</strong></td><td>Agent 授权触发额外安全验证。</td><td>使用长期可控手机号；Giffgaff 用户优先手机号注册路线。</td></tr><tr><td><strong>Apple 隐藏邮箱</strong></td><td>Apple 登录可能生成私有转发邮箱。</td><td>记录 <code>@privaterelay.appleid.com</code> 地址，避免忘记真实登录凭据。</td></tr></tbody>
+      </table></div>
+      </div>
+    </div>
+  </section>
+
+    <section id="refs" class="section">
+      <div class="wrap">
+        <div class="plate">
+          <div class="section-head">
+            <div>
+              <h2>官方参考</h2>
+              <p>教程以官方帮助文档和实际操作经验为基础；界面和政策可能变化，操作前建议再核对一次。</p>
+            </div>
+            <span class="tag">References</span>
+          </div>
+          <div class="refs"><a href="https://help.openai.com/en/articles/7947663-chatgpt-supported-countries"><strong>ChatGPT supported countries</strong><span>help.openai.com/en/articles/7947663-chatgpt-supported-countries</span></a><a href="https://help.openai.com/en/articles/9131992-chatgpt-and-api-services-in-unsupported-countries-and-territories"><strong>Unsupported countries and territories</strong><span>help.openai.com/en/articles/9131992-chatgpt-and-api-services-in-unsupported-countries-and-territories</span></a><a href="https://help.openai.com/en/articles/7426629-why-cant-i-log-in-to-chatgpt"><strong>Login troubleshooting</strong><span>help.openai.com/en/articles/7426629-why-cant-i-log-in-to-chatgpt</span></a><a href="https://help.openai.com/en/articles/10388702-phone-only-signups-for-the-us-and-india-beta"><strong>Phone-only signups beta</strong><span>help.openai.com/en/articles/10388702-phone-only-signups-for-the-us-and-india-beta</span></a><a href="https://help.openai.com/en/articles/9135134-how-to-change-the-phone-number-associated-with-your-account"><strong>Change phone number</strong><span>help.openai.com/en/articles/9135134-how-to-change-the-phone-number-associated-with-your-account</span></a><a href="https://help.openai.com/en/articles/4936827-how-to-change-your-email-address"><strong>Change email address</strong><span>help.openai.com/en/articles/4936827-how-to-change-your-email-address</span></a><a href="https://help.openai.com/en/articles/7967234-enabling-or-disabling-multi-factor-authentication-mfa"><strong>Multi-factor authentication</strong><span>help.openai.com/en/articles/7967234-enabling-or-disabling-multi-factor-authentication-mfa</span></a></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="wrap footer">
+    <p>作者：ymzhang。由 Markdown 教程生成的单文件 HTML 版本。最后整理：2026-05-22。</p>
+  </footer>
+</body>
+</html>
