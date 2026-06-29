@@ -1,3 +1,22 @@
 .DS_Store
 *.pptx
 Thumbs.db
+
+# codex-doc-git-backup safety ignores
+.DS_Store
+.Spotlight-V100/
+.Trashes/
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+*.p12
+id_rsa
+id_dsa
+node_modules/
+dist/
+build/
+.cache/
+tmp/
+*.log
