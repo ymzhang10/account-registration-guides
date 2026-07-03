@@ -4,15 +4,17 @@
 
 ## 在线阅读
 
-如果启用 GitHub Pages，可从 `index.html` 进入完整目录。
+推荐从 GitHub Pages 阅读渲染后的单页 HTML：
+
+[账号申请与订阅教程在线目录](https://ymzhang10.github.io/account-registration-guides/)
 
 ## 教程列表
 
-- [ChatGPT 账号注册教程](ChatGPT账号注册教程.md)
-- [Gmail 邮箱账号注册教程](Gmail邮箱账号注册教程.md)
-- [中国大陆用户注册美国区 App Store 账号教程](中国大陆用户注册美国区App%20Store账号教程.md)
-- [美区 Apple 账户充值与 App 内购订阅教程](美区Apple账户充值与App内购订阅教程.md)
-- [用美区 Apple 余额订阅 ChatGPT Plus 教程](用美区Apple余额订阅ChatGPT%20Plus教程.md)
+- [ChatGPT 账号注册教程](https://ymzhang10.github.io/account-registration-guides/ChatGPT账号注册教程.html)（[Markdown 源文档](ChatGPT账号注册教程.md)）
+- [Gmail 邮箱账号注册教程](https://ymzhang10.github.io/account-registration-guides/Gmail邮箱账号注册教程.html)（[Markdown 源文档](Gmail邮箱账号注册教程.md)）
+- [中国大陆用户注册美国区 App Store 账号教程](https://ymzhang10.github.io/account-registration-guides/中国大陆用户注册美国区App%20Store账号教程.html)（[Markdown 源文档](中国大陆用户注册美国区App%20Store账号教程.md)）
+- [美区 Apple 账户充值与 App 内购订阅教程](https://ymzhang10.github.io/account-registration-guides/美区Apple账户充值与App内购订阅教程.html)（[Markdown 源文档](美区Apple账户充值与App内购订阅教程.md)）
+- [用美区 Apple 余额订阅 ChatGPT Plus 教程](https://ymzhang10.github.io/account-registration-guides/用美区Apple余额订阅ChatGPT%20Plus教程.html)（[Markdown 源文档](用美区Apple余额订阅ChatGPT%20Plus教程.md)）
 
 ## 重要说明
 
@@ -24,7 +26,7 @@
 ## 仓库内容
 
 - `*.md`：适合在 GitHub 仓库中直接阅读和维护。
-- `*.html`：适合通过 GitHub Pages 作为网页阅读。
+- `*.html`：适合通过 GitHub Pages 作为网页阅读；在 GitHub 仓库文件页点击 `.html` 会显示源代码，这是 GitHub 的正常行为。
 - `assets/`：教程中引用的截图资源。
 
 ## 许可
